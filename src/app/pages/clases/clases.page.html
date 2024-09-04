@@ -1,18 +1,200 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mis Clases</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>Clases</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Clases para el dia de hoy</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-segment value="lunes" scrollable>
+    <ion-segment-button value="lunes">
+      <ion-label>Lunes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="martes">
+      <ion-label>Martes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="miércoles">
+      <ion-label>Miércoles</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="jueves">
+      <ion-label>Jueves</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="viernes">
+      <ion-label>Viernes</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-  <img src="assets/imgs/calendar.png" alt="">
+  <ion-content>
+    <div class="classes-container">
+      <ion-list>
+    
+        <ion-item-sliding>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img src="assets/img/clase1.jpg" alt="Icono de la clase">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>Matemáticas</h2>
+              <p>8:00 AM - 9:30 AM</p>
+            </ion-label>
+            <ion-badge color="success" slot="end">Código QR</ion-badge>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="tertiary">
+              <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+              Detalle
+            </ion-item-option>
+            <ion-item-option color="secondary">
+              <ion-icon slot="start" name="create-outline"></ion-icon>
+              Editar
+            </ion-item-option>
+            <ion-item-option color="danger">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-item-sliding>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img src="assets/img/clase2.jpg" alt="Icono de la clase">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>Historia</h2>
+              <p>10:00 AM - 11:30 AM</p>
+            </ion-label>
+            <ion-badge color="success" slot="end">Código QR</ion-badge>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="tertiary">
+              <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+              Detalle
+            </ion-item-option>
+            <ion-item-option color="secondary">
+              <ion-icon slot="start" name="create-outline"></ion-icon>
+              Editar
+            </ion-item-option>
+            <ion-item-option color="danger">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+       
+        <ion-item-sliding>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img src="assets/img/clase3.jpg" alt="Icono de la clase">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>Matemática Descriptiva</h2>
+              <p>9:00 AM - 10:30 AM</p>
+            </ion-label>
+            <ion-badge color="success" slot="end">Código QR</ion-badge>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="tertiary">
+              <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+              Detalle
+            </ion-item-option>
+            <ion-item-option color="secondary">
+              <ion-icon slot="start" name="create-outline"></ion-icon>
+              Editar
+            </ion-item-option>
+            <ion-item-option color="danger">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-item-sliding>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img src="assets/img/clase4.jpg" alt="Icono de la clase">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>Calidad de Software</h2>
+              <p>11:00 AM - 12:30 PM</p>
+            </ion-label>
+            <ion-badge color="success" slot="end">Código QR</ion-badge>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="tertiary">
+              <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+              Detalle
+            </ion-item-option>
+            <ion-item-option color="secondary">
+              <ion-icon slot="start" name="create-outline"></ion-icon>
+              Editar
+            </ion-item-option>
+            <ion-item-option color="danger">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-item-sliding>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img src="assets/img/clase5.jpg" alt="Icono de la clase">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>Arquitectura</h2>
+              <p>1:00 PM - 2:30 PM</p>
+            </ion-label>
+            <ion-badge color="success" slot="end">Código QR</ion-badge>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="tertiary">
+              <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+              Detalle
+            </ion-item-option>
+            <ion-item-option color="secondary">
+              <ion-icon slot="start" name="create-outline"></ion-icon>
+              Editar
+            </ion-item-option>
+            <ion-item-option color="danger">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-item-sliding>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img src="assets/img/clase6.jpg" alt="Icono de la clase">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>Programación Móvil</h2>
+              <p>3:00 PM - 4:30 PM</p>
+            </ion-label>
+            <ion-badge color="success" slot="end">Código QR</ion-badge>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="tertiary">
+              <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+              Detalle
+            </ion-item-option>
+            <ion-item-option color="secondary">
+              <ion-icon slot="start" name="create-outline"></ion-icon>
+              Editar
+            </ion-item-option>
+            <ion-item-option color="danger">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+  </ion-content>
 </ion-content>

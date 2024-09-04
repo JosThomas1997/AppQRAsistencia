@@ -1,16 +1,65 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Progreso de Asistencia</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>Asistencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tu asistencia en clases</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Resumen del Progreso</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Total de Clases</ion-label>
+        <ion-note>30</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Clases Asistidas</ion-label>
+        <ion-note>25</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Clases Perdidas</ion-label>
+        <ion-note>5</ion-note>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Progreso de Asistencia</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Asistencias</ion-label>
+        <ion-progress-bar value="0.83" color="success"></ion-progress-bar>
+      </ion-item>
+      <ion-item>
+        <ion-label>Ausencias</ion-label>
+        <ion-progress-bar value="0.17" color="danger"></ion-progress-bar>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Asistencia por Semana</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Semana 1</ion-label>
+        <ion-note>5 clases asistidas</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Semana 2</ion-label>
+        <ion-note>4 clases asistidas</ion-note>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
