@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar> 
+  <ion-toolbar>
     <ion-title>Bienvenido, {{username}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,76 +10,30 @@
       <ion-title size="large">Bienvenido, {{username}}</ion-title>
     </ion-toolbar>
   </ion-header>
-   <!-- CARD PARA LA BIENVENIDA -->
-   <ion-card>
+
+  <!-- CARD PARA LA BIENVENIDA -->
+  <ion-card>
     <ion-card-header>
       <ion-card-title>Hola, {{ username }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <img alt="Silhouette of mountains" src="assets/imgs/DUOC_UC.png" />
     </ion-card-content>
-  
     <ion-card-content>
       Bienvenido al sistema.
     </ion-card-content>
-    <!-- CARD CONTAINER 2X2 -->
-    <div class="card-container">
-      <ion-card color="secondary" (click)="navigateClases()">
-          <ion-card-header>
-              <ion-card-title>Clases</ion-card-title>
-              <ion-card-subtitle>Clases</ion-card-subtitle>
-          </ion-card-header>
-      </ion-card>
- 
-      <ion-card color="secondary" (click)="navigateHorario()">
-        <ion-card-header>
-            <ion-card-title>
-              <ion-icon name="time-sharp"></ion-icon>
-            </ion-card-title>
-            <ion-card-subtitle>Horario</ion-card-subtitle>
-        </ion-card-header>
-    </ion-card>
 
-    <ion-card color="secondary" (click)="navigateAsistencia()">
-      <ion-card-header>
-          <ion-card-title>
-            <ion-icon name="checkmark-sharp"></ion-icon>
-          </ion-card-title>
-          <ion-card-subtitle>Asistencia</ion-card-subtitle>
-      </ion-card-header>
+    <!-- Nuevo diseño para los botones de Horario y Asistencia -->
+    <div class="button-container">
+      <ion-button class="custom-button" expand="block" (click)="navigateHorario()">
+        <ion-icon name="time-sharp" slot="start"></ion-icon>
+        Horario
+      </ion-button>
+
+      <ion-button class="custom-button" expand="block" (click)="navigateAsistencia()">
+        <ion-icon name="checkmark-sharp" slot="start"></ion-icon>
+        Asistencia
+      </ion-button>
+    </div>
   </ion-card>
-
-  <ion-card color="secondary" (click)="navigateClases()">
-    <ion-card-header>
-        <ion-card-title>
-          <ion-icon name="checkmark-sharp"></ion-icon>
-        </ion-card-title>
-        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-    </ion-card-header>
-</ion-card>
-  </div>
-
-  </ion-card>
-  <ion-grid>
-    <!--Boton Clases-->
-    <ion-row>
-      <ion-col>
-        <ion-button expand="full" color="primary" routerLink="/clases">Clases</ion-button>
-      </ion-col>
-    </ion-row>
-
-    <!--Boton Asistencia-->
-    <ion-row>
-      <ion-col>
-        <ion-button expand="full" color="primary" routerLink="/asistencia">Asistencia</ion-button>
-      </ion-col>
-    </ion-row>
-
-    <!--Boton Horario-->
-    <ion-row>
-      <ion-col>
-        <ion-button expand="full" color="primary" routerLink="/horarios">Horario</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 </ion-content>

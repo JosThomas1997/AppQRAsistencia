@@ -1,36 +1,33 @@
-ion-card img {
-    width: 300px; 
-    height: 150px; 
-    display: block;
-    margin: 0 auto; 
-  }
-
-  ion-card-title {
-    text-align: center; /* Centra el texto horizontalmente */
-  }
-
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px; /* Reducido el espacio entre las tarjetas */
-    max-width: 800px;
-    margin: auto;
-    padding: 8px; /* Reducido el relleno del contenedor */
+/* Contenedor de botones */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
-ion-card {
-    border-radius: 8px;
-    overflow: hidden;
-    min-height: 100px; /* Ajusta la altura  */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Asegura que el contenido esté bien distribuido */
+.custom-button {
+  --background: linear-gradient(135deg, #007bff, #ffffff); // Degradado de azul a blanco
+  --background-activated: linear-gradient(135deg, #0056b3, #e0e0e0); // Degradado activado
+  --border-radius: 30px;
+  --box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  color: white;
+  width: 80%;
+  height: 60px;
+  margin: 15px 0;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  transition: transform 0.3s ease, background 0.3s ease; // Añadido efecto de transición para el fondo
 }
 
-ion-card-subtitle {
-    text-align: center; 
+.custom-button:hover {
+  transform: scale(1.05);
+  --background: linear-gradient(135deg, #0056b3, #e0e0e0); // Efecto hover con gradiente modificado
 }
 
 
-
-  
+/* Estilo del icono dentro del botón */
+.custom-button ion-icon {
+  font-size: 1.5em;
+  margin-right: 10px;
+}

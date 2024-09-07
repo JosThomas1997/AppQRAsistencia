@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsistenciaPage implements OnInit {
 
+  className: string = 'Matemáticas';
+  currentDate: Date = new Date();
+  attendancePercentage: number = 75; // Ejemplo de porcentaje de asistencia
+
   constructor() { }
 
   ngOnInit() {

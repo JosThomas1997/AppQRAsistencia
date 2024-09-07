@@ -1,0 +1,21 @@
+ion-segment-button {
+  flex: 1;
+  text-align: center;
+}
+
+.classes-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+
+
+.class-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover; /* Ajusta la imagen para que se recorte sin deformarse */
+  border-radius: 50%; /* Opcional: para hacer la imagen circular */
+  margin-right: 10px; /* Opcional: para agregar espacio entre la imagen y el texto */
+}
+
+

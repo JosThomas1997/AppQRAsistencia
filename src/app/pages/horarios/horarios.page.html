@@ -1,17 +1,63 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Horarios</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Mis Clases</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let clase of clases" (click)="verDetalleclases(clase)">
-      <ion-label>
-        <h2>{{ clase.nombre }}</h2>
-        <p>Fecha: {{ clase.fecha }}</p>
-        <p>Hora: {{ clase.hora }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-segment [(ngModel)]="diaDefault" (ionChange)="onDayChange($event)" scrollable>
+    <ion-segment-button value="lunes">
+      <ion-label>Lunes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="martes">
+      <ion-label>Martes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="miércoles">
+      <ion-label>Miércoles</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="jueves">
+      <ion-label>Jueves</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="viernes">
+      <ion-label>Viernes</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-content>
+    <div class="classes-container">
+      <ion-list>
+        <ion-item-sliding *ngFor="let clase of getClasesporDia()">
+          <ion-item>
+            <img [src]="clase.imagen" alt="Imagen de la clase" class="class-image">
+            <ion-label>
+              <h2>{{ clase.nombre }}</h2>
+              <ng-container *ngFor="let block of clase.bloques">
+                <p>{{ block.start }} - {{ block.end }}</p>
+              </ng-container>
+            </ion-label>
+            <ion-badge color="success" slot="end">Código QR</ion-badge>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="tertiary">
+              <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+              Detalle
+            </ion-item-option>
+            <ion-item-option color="secondary">
+              <ion-icon slot="start" name="create-outline"></ion-icon>
+              Editar
+            </ion-item-option>
+            <ion-item-option color="danger">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+  </ion-content>
 </ion-content>

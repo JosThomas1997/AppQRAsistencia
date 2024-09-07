@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Clase } from 'src/app/interfaces/clase';
+import { Router } from '@angular/router';
+import { ClasesPorDia, Clase } from 'src/app/interfaces/clase';
 
 @Component({
   selector: 'app-horarios',
@@ -8,22 +8,35 @@ import { Clase } from 'src/app/interfaces/clase';
   styleUrls: ['./horarios.page.scss'],
 })
 export class HorariosPage implements OnInit {
+  diaDefault: string = 'lunes'; // 
 
-  //variable que recibe param
-  
-  clases = [
-    {nombre: 'Arquitectura', fecha: '05-09-2024', hora: '10:00AM'}
+  clases: ClasesPorDia = {
+    lunes: [
+      { nombre: 'Arquitectura', bloques: [{ start: '10:00 AM', end: '11:30 AM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' },
+      { nombre: 'Matemáticas', bloques: [{ start: '8:00 AM', end: '9:30 AM' }, { start: '10:00 AM', end: '11:00 AM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' }
+    ],
+    miércoles: [
+      { nombre: 'Matemáticas', bloques: [{ start: '9:00 AM', end: '10:30 AM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' },
+      { nombre: 'Programación Móvil', bloques: [{ start: '1:00 PM', end: '2:30 PM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' }
+    ],
+    
+  };
 
-  ];
-
-  constructor(private router : Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     
   }
 
-  verDetalleclases(aux:any){
-    this.router.navigate(['detalle-clases', aux.nombre])
+  getClasesporDia(): Clase[] {
+    return this.clases[this.diaDefault] || [];
   }
 
+  verDetalleclases(clase: Clase) {
+    this.router.navigate(['detalle-clases', clase.nombre]);
+  }
+
+  onDayChange(event: any) {
+    this.diaDefault = event.detail.value;
+  }
 }

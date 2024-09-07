@@ -1,65 +1,31 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Progreso de Asistencia</ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+  <ion-toolbar>
+    <ion-title>Asistencia de la Clase</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
+<ion-content class="ion-padding custom-content">
+  <!-- Card para mostrar el nombre de la clase, fecha y hora actual -->
+  <ion-card class="custom-card">
     <ion-card-header>
-      <ion-card-title>Resumen del Progreso</ion-card-title>
+      <ion-card-title>{{ className }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-item>
-        <ion-label>Total de Clases</ion-label>
-        <ion-note>30</ion-note>
-      </ion-item>
-      <ion-item>
-        <ion-label>Clases Asistidas</ion-label>
-        <ion-note>25</ion-note>
-      </ion-item>
-      <ion-item>
-        <ion-label>Clases Perdidas</ion-label>
-        <ion-note>5</ion-note>
-      </ion-item>
+      <p class="date-time">📅 Fecha: {{ currentDate | date: 'fullDate' }}</p>
+      <p class="date-time">⏰ Hora: {{ currentDate | date: 'HH:mm:ss' }}</p>
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <!-- Barra de progreso para el porcentaje de asistencia -->
+  <ion-card class="custom-card">
     <ion-card-header>
       <ion-card-title>Progreso de Asistencia</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-item>
-        <ion-label>Asistencias</ion-label>
-        <ion-progress-bar value="0.83" color="success"></ion-progress-bar>
-      </ion-item>
-      <ion-item>
-        <ion-label>Ausencias</ion-label>
-        <ion-progress-bar value="0.17" color="danger"></ion-progress-bar>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Asistencia por Semana</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label>Semana 1</ion-label>
-        <ion-note>5 clases asistidas</ion-note>
-      </ion-item>
-      <ion-item>
-        <ion-label>Semana 2</ion-label>
-        <ion-note>4 clases asistidas</ion-note>
-      </ion-item>
+      <div class="progress-container">
+        <ion-progress-bar value="{{ attendancePercentage / 100 }}" color="tertiary"></ion-progress-bar>
+        <p class="progress-text">{{ attendancePercentage }}% Asistencia</p>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>
-
