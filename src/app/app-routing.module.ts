@@ -41,7 +41,11 @@ const routes: Routes = [
   {
     path: 'invitado-dashboard',
     loadChildren: () => import('./pages/invitado/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
+
 
 
 ];
