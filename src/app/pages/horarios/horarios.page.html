@@ -1,16 +1,17 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Horario</ion-title>
+    <ion-title>Horarios</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Horario para el dia de hoy</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let clase of clases" (click)="verDetalleclases(clase)">
+      <ion-label>
+        <h2>{{ clase.nombre }}</h2>
+        <p>Fecha: {{ clase.fecha }}</p>
+        <p>Hora: {{ clase.hora }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
