@@ -28,7 +28,11 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
+
+  
 
   async login() {
     // Comenté  la parte de `setTimeout` pa depurar porque el loading me quedó infinito xd

@@ -1,40 +1,7 @@
-.custom-content {
-  background-color: #f0f4f7;
+ion-card {
+  margin: 16px;
 }
 
-.custom-card {
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+ion-card-content {
+  font-size: 1.2em;
 }
-
-.date-time {
-  font-size: 16px;
-  color: #4a4a4a;
-  margin: 5px 0;
-}
-
-.progress-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.progress-text {
-  margin-top: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #3a7bd5;
-}
-
-/* Personalización de la barra de progreso */
-ion-progress-bar {
-  height: 20px;
-  --progress-background: #d1e4f2;
-  --progress-background-opacity: 0.8;
-  --progress-buffer-background: #3a7bd5;
-  --progress-bar-background: #66c2ff;
-  border-radius: 10px;
-}
-
-

@@ -7,27 +7,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding custom-content">
-  <!-- Card para mostrar el nombre de la clase, fecha y hora actual -->
-  <ion-card class="custom-card">
+<ion-content>
+  <ion-card>
     <ion-card-header>
-      <ion-card-title>{{ className }}</ion-card-title>
+      <ion-card-title>Registro de Asistencia</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p class="date-time">📅 Fecha: {{ currentDate | date: 'fullDate' }}</p>
-      <p class="date-time">⏰ Hora: {{ currentDate | date: 'HH:mm:ss' }}</p>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Barra de progreso para el porcentaje de asistencia -->
-  <ion-card class="custom-card">
-    <ion-card-header>
-      <ion-card-title>Progreso de Asistencia</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div class="progress-container">
-        <ion-progress-bar value="{{ attendancePercentage / 100 }}" color="tertiary"></ion-progress-bar>
-        <p class="progress-text">{{ attendancePercentage }}% Asistencia</p>
+      <div *ngIf="asistencia">
+        <p><strong>Clase:</strong> {{ asistencia.clase }}</p>
+        <p><strong>Fecha:</strong> {{ asistencia.fecha }}</p>
+        <p><strong>Hora:</strong> {{ asistencia.hora }}</p>
+      </div>
+      <div *ngIf="!asistencia">
+        <p>No hay información de asistencia disponible.</p>
       </div>
     </ion-card-content>
   </ion-card>

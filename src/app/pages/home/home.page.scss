@@ -58,3 +58,14 @@ ion-card {
   overflow: hidden; /* Asegura que el contenido no se desborde */
 }
 
+.centered-title {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif; /* Cambia 'Roboto' por la fuente que elijas */
+  font-weight: 700; /* Puedes ajustar el grosor de la fuente */
+  font-size: 1.5rem; /* Puedes ajustar el tamaño de la fuente */
+}
+
+

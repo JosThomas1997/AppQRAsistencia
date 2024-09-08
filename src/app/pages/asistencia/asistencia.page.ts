@@ -6,14 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./asistencia.page.scss'],
 })
 export class AsistenciaPage implements OnInit {
-
-  className: string = 'Matemáticas';
-  currentDate: Date = new Date();
-  attendancePercentage: number = 75; // Ejemplo de porcentaje de asistencia
+  asistencia: any;
 
   constructor() { }
 
   ngOnInit() {
+    // Cargar la información de asistencia desde localStorage
+    const record = localStorage.getItem('asistencia');
+    if (record) {
+      this.asistencia = JSON.parse(record);
+    }
   }
-
 }

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Asistencia</ion-title>
+    <ion-title>Horarios</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -26,6 +26,7 @@
     </ion-segment-button>
   </ion-segment>
 
+  <!-- Botón de código QR -->
   <ion-content>
     <div class="classes-container">
       <ion-list>
@@ -38,7 +39,9 @@
                 <p>{{ block.start }} - {{ block.end }}</p>
               </ng-container>
             </ion-label>
-            <ion-badge color="success" slot="end"></ion-badge>
+            <ion-button (click)="selectClass(clase)" color="primary" fill="outline">
+              Generar Código QR
+            </ion-button>
           </ion-item>
           <ion-item-options side="end">
             <ion-item-option color="tertiary">
