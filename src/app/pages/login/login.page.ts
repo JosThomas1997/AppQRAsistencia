@@ -32,11 +32,11 @@ export class LoginPage implements OnInit {
 
   async login() {
     // Comenté  la parte de `setTimeout` pa depurar porque el loading me quedó infinito xd
-    // const loading = await this.loadingController.create({
-    //   message: 'Cargando.....',
-    //   duration: 2000
-    // });
-    // await loading.present();
+     const loading = await this.loadingController.create({
+       message: 'Cargando.....',
+       duration: 2000
+     });
+     await loading.present();
 
     const email = this.emailValue;
     const pass = this.passValue;
@@ -48,9 +48,9 @@ export class LoginPage implements OnInit {
 
     if (user) {
       // Comenté  la parte de `setTimeout` pa depurar porque el loading me quedó infinito xd
-      // setTimeout(async () => {
-        // await loading.dismiss();
-        localStorage.setItem('usuarioLogin', JSON.stringify(user));
+       setTimeout(async () => {
+         await loading.dismiss();
+         localStorage.setItem('nombre', user.name);
 
         if (user.tipo === 'admin') {
           this.router.navigate(['/admin-dashboard']);
@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
         } else {
           this.router.navigate(['/invitado-dashboard']);
         }
-      // }, 2000);
+       }, 2000);
     } else {
       const alert = await this.alertController.create({
         header: 'Acceso denegado',
@@ -72,6 +72,6 @@ export class LoginPage implements OnInit {
     }
    
     // cierre del loadingController
-    // await loading.dismiss();
+     await loading.dismiss();
   }
 }

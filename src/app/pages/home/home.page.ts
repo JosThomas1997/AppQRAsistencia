@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class HomePage implements OnInit {
-  username: string = ''; 
+  userName: string | null = '';
 
   constructor(private router: Router){}
 
@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
   }  
 
   ngOnInit() {
-    this.username = localStorage.getItem('username') || '';
+    this.userName = localStorage.getItem('nombre');
   }
 
   

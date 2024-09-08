@@ -13,7 +13,7 @@ import { HorariosPage } from './horarios.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    HorariosPageRoutingModule
+    HorariosPageRoutingModule,
   ],
   declarations: [HorariosPage]
 })

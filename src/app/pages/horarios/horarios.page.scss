@@ -19,3 +19,13 @@ ion-segment-button {
 }
 
 
+.badge-button {
+  width: 100%; /* Hace que el botón ocupe todo el ancho del contenedor */
+  height: 40px; /* Ajusta la altura del botón para que se asemeje al badge */
+  border-radius: 10px; /* Ajusta el borde del botón para que se asemeje al badge */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+

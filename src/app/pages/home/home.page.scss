@@ -4,30 +4,57 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  background: linear-gradient(135deg, #007bff, #ffffff); /* Degradado de azul a blanco para el fondo del contenedor */
 }
 
+/* Estilo para los botones */
 .custom-button {
-  --background: linear-gradient(135deg, #007bff, #ffffff); // Degradado de azul a blanco
-  --background-activated: linear-gradient(135deg, #0056b3, #e0e0e0); // Degradado activado
+  --background: linear-gradient(135deg, #FFCC00, #FFFF99); /* Degradado amarillo claro a amarillo */
+  --background-activated: linear-gradient(135deg, #FFCC00, #FFCC99); /* Degradado amarillo oscuro a amarillo claro */
   --border-radius: 30px;
   --box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  color: white;
+  color: black; /* Cambiado a negro para contraste con el amarillo */
   width: 80%;
   height: 60px;
   margin: 15px 0;
   font-size: 1.2em;
   text-transform: uppercase;
-  transition: transform 0.3s ease, background 0.3s ease; // Añadido efecto de transición para el fondo
+  transition: transform 0.3s ease, background 0.3s ease; /* Añadido efecto de transición para el fondo */
+  background: var(--background);
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
 }
 
 .custom-button:hover {
   transform: scale(1.05);
-  --background: linear-gradient(135deg, #0056b3, #e0e0e0); // Efecto hover con gradiente modificado
+  --background: linear-gradient(135deg, #FFCC00, #FFCC99); /* Efecto hover con gradiente modificado */
+  background: var(--background);
 }
-
 
 /* Estilo del icono dentro del botón */
 .custom-button ion-icon {
   font-size: 1.5em;
   margin-right: 10px;
 }
+
+/* Fondo del ion-content con un gradiente */
+.background-gradient {
+  background: linear-gradient(135deg, #007bff, #ffffff); /* Gradiente de azul a blanco */
+  --background: transparent; /* Asegura que el fondo se muestre correctamente */
+}
+
+/* Fondo uniforme para el contenido de la tarjeta */
+.custom-card-content {
+  background-color: #ffffff; /* Color sólido blanco que combina con el fondo del ion-content */
+  border-radius: 8px; /* Bordes redondeados para las tarjetas */
+  padding: 16px; /* Espaciado interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+}
+
+/* Estilo opcional para el ion-card para mantener el diseño uniforme */
+ion-card {
+  border-radius: 8px; /* Bordes redondeados para el card */
+  overflow: hidden; /* Asegura que el contenido no se desborde */
+}
+

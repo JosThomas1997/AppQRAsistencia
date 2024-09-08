@@ -1,35 +1,41 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>Inicia Sesion</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  
-  <ion-card >
-    <img alt="Silhouette of mountains" src="assets/imgs/DUOC_UC.png" />
-    <ion-card-content [formGroup]="loginForm">
-      <ion-item>
-        <ion-input formControlName="email" [(ngModel)]="emailValue" type="email" label="Usuario:" labelPlacement="floating" placeholder="Ej: Pedro"></ion-input>
-      </ion-item>
-      <ion-text position="stacked" color="danger" *ngIf="loginForm.get('email')?.hasError('required')">
-        El correo es requerido!
-      </ion-text>
-      <ion-text position="stacked" color="danger" *ngIf="loginForm.get('email')?.hasError('email')">
-        El correo es inválido!
-      </ion-text>
-      <ion-item>
-        <ion-input formControlName="pass" [(ngModel)]="passValue" type="password" labelPlacement="floating" label="Contraseña:" placeholder="Ej: 123456"></ion-input>
-      </ion-item>
-      <ion-text position="stacked" color="danger" *ngIf="loginForm.get('pass')?.hasError('required')">
-        La contraseña es requerida!
-      </ion-text>
-      <ion-text position="stacked" color="danger" *ngIf="loginForm.get('pass')?.hasError('minlength')">
-        La contraseña tiene como min 6 caracteres!
-      </ion-text>
-      <ion-button expand="full" (click)="login()">Ingresar</ion-button>
-      <ion-button expand="full" routerLink="/register">Registrarse</ion-button>
+<ion-content class="login-content">
+  <ion-card class="login-card">
+    <img alt="DUOC UC Logo" src="assets/imgs/DUOC_UC.png" class="logo-image" />
+    <ion-card-content>
+      <form [formGroup]="loginForm">
+        <ion-item class="input-item">
+          <ion-input formControlName="email" [(ngModel)]="emailValue" type="email" label="Usuario:" labelPlacement="floating" placeholder="Ej: Pedro"></ion-input>
+        </ion-item>
+        <ion-text position="stacked" color="danger" *ngIf="loginForm.get('email')?.hasError('required')">
+          El correo es requerido!
+        </ion-text>
+        <ion-text position="stacked" color="danger" *ngIf="loginForm.get('email')?.hasError('email')">
+          El correo es inválido!
+        </ion-text>
+
+        <ion-item class="input-item">
+          <ion-input formControlName="pass" [(ngModel)]="passValue" type="password" labelPlacement="floating" label="Contraseña:" placeholder="Ej: 123456"></ion-input>
+        </ion-item>
+        <ion-text position="stacked" color="danger" *ngIf="loginForm.get('pass')?.hasError('required')">
+          La contraseña es requerida!
+        </ion-text>
+        <ion-text position="stacked" color="danger" *ngIf="loginForm.get('pass')?.hasError('minlength')">
+          La contraseña tiene como min 6 caracteres!
+        </ion-text>
+
+        <ion-button expand="full" (click)="login()" class="login-button">Ingresar</ion-button>
+
+        <div class="register-text">
+          ¿No tienes cuenta? 
+          <a routerLink="/register" class="register-link">Haz clic aquí</a>
+        </div>
+      </form>
     </ion-card-content>
   </ion-card>
-
 </ion-content>

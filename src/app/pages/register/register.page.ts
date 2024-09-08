@@ -12,9 +12,10 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class RegisterPage implements OnInit {
 
-  loginForm: FormGroup;
+  registerForm: FormGroup;
   emailValue?: string;
   passValue?: string;
+  nomValue?: string;
 
   constructor(
     private router:Router,
@@ -23,9 +24,10 @@ export class RegisterPage implements OnInit {
     private loadingController: LoadingController,
     private usuariosService: UsuariosService
   ) {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
       email : ['', [Validators.required, Validators.email]],
       pass: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
 
@@ -37,6 +39,7 @@ export class RegisterPage implements OnInit {
       email: this.emailValue || '',
       pass: this.passValue || '',
       tipo: 'usuario',
+      name: this.nomValue || ''
     }
     // APLICAR ALERT o LOADING, pongale cariño
     this.usuariosService.addUsuario(nuevoUsuario);

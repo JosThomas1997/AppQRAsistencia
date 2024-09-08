@@ -7,9 +7,9 @@ import { Usuario } from '../interfaces/usuario';
 export class UsuariosService {
 
   usuarios: Usuario[] = [
-    { 'email':'admin@admin.cl','pass':'admin123','tipo':'admin'},
-    { 'email':'user@user.cl','pass':'user123','tipo':'usuario'},
-    { 'email':'invi@invi.cl','pass':'invitado','tipo':'invitado'},
+    { 'email':'admin@admin.cl','pass':'admin123','tipo':'admin','name':''},
+    { 'email':'user@user.cl','pass':'user123','tipo':'usuario','name':''},
+    { 'email':'invi@invi.cl','pass':'invitado','tipo':'invitado','name':''},
   ]
 
   constructor() { }

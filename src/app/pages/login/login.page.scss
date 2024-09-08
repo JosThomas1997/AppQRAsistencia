@@ -1,0 +1,50 @@
+.login-content {
+  --background: linear-gradient(135deg, #007bff, #ffffff); /* Degradado de azul a blanco */
+}
+
+ion-header {
+  --ion-background-color: #004a99; /* Color de fondo azul oscuro */
+}
+
+ion-toolbar {
+  --ion-background-color: transparent; /* Transparente para permitir que el fondo azul se vea */
+  --color: white; /* Texto en blanco para contraste */
+}
+
+.login-card {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.logo-image {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 150px;
+  height: auto;
+}
+
+.input-item {
+  margin-bottom: 15px;
+}
+
+.login-button {
+  --background: linear-gradient(135deg, #007bff, #ffffff); /* Botón con degradado de azul a blanco */
+  --background-activated: linear-gradient(135deg, #0056b3, #e0e0e0); /* Botón activado: azul oscuro a gris */
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.register-text {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-link {
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
