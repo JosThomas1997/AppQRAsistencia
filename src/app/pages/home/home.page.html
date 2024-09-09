@@ -13,20 +13,17 @@
 <ion-content [fullscreen]="true" class="background-gradient">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Bienvenido, {{userName }}</ion-title>
+      <ion-title size="large">Bienvenido, {{ userName }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <!-- CARD PARA LA BIENVENIDA -->
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Hola, {{ userName  }}</ion-card-title>
+      <ion-card-title class="custom-card-title">Hola, {{ userName }}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="custom-card-content">
       <img alt="Silhouette of mountains" src="assets/imgs/Logo-RegistrAPP.png" />
-    </ion-card-content>
-    <ion-card-content class="custom-card-content">
-      Bienvenido al sistema.
     </ion-card-content>
 
     <!-- Nuevo diseño para los botones de Horario y Asistencia -->

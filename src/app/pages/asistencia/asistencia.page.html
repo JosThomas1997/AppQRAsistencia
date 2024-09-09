@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -8,19 +8,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Registro de Asistencia</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div *ngIf="asistencia">
-        <p><strong>Clase:</strong> {{ asistencia.clase }}</p>
-        <p><strong>Fecha:</strong> {{ asistencia.fecha }}</p>
-        <p><strong>Hora:</strong> {{ asistencia.hora }}</p>
-      </div>
-      <div *ngIf="!asistencia">
-        <p>No hay información de asistencia disponible.</p>
-      </div>
-    </ion-card-content>
-  </ion-card>
+  <div class="container">
+    <ion-card class="attendance-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">Registro de Asistencia</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngIf="asistencia">
+          <p><strong>Clase:</strong> {{ asistencia.clase }}</p>
+          <p><strong>Fecha:</strong> {{ asistencia.fecha }}</p>
+          <p><strong>Hora:</strong> {{ asistencia.hora }}</p>
+        </div>
+        <div *ngIf="!asistencia" class="no-info">
+          <ion-icon name="alert-circle-outline" class="no-info-icon"></ion-icon>
+          <p>No hay información de asistencia disponible.</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

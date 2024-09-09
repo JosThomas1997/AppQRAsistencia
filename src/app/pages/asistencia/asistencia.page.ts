@@ -17,4 +17,10 @@ export class AsistenciaPage implements OnInit {
       this.asistencia = JSON.parse(record);
     }
   }
+
+  handleAdditionalInfo() {
+    // Lógica para manejar la acción del botón "Ver Más"
+    // Puedes redirigir a otra página, mostrar un modal, etc.
+    console.log('Ver Más button clicked');
+  }
 }

@@ -5,3 +5,43 @@ ion-card {
 ion-card-content {
   font-size: 1.2em;
 }
+
+ion-toolbar {
+  --background: #007bff; /* Azul primario */
+  --color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px; /* Aumenta el padding para más espacio interno */
+  background: #fff; /* Fondo blanco para el card */
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  color: #0056b3; /* Azul más oscuro para el título */
+}
+
+ion-card-content p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #333;
+  padding: 5px 0;
+}
+
+.no-info {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
+
+.no-info-icon {
+  font-size: 2rem;
+  color: #ff9800; /* Color de alerta */
+  margin-bottom: 10px;
+}

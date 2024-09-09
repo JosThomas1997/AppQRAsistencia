@@ -80,7 +80,7 @@ export class HorariosPage implements OnInit {
     if (this.selectedClass) {
       // Aquí puedes implementar la lógica para generar el código QR.
       // Por ahora solo muestra un mensaje.
-      alert(`Código QR generado para la clase ${this.selectedClass.nombre} (funcionalidad pendiente)`);
+      alert(`Código QR generado para la clase ${this.selectedClass.nombre} `);
       
       // Guardar la fecha y hora actual en el almacenamiento local.
       const now = new Date();

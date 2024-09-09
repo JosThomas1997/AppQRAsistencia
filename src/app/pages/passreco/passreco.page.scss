@@ -2,13 +2,9 @@
     --background: linear-gradient(135deg, #007bff, #ffffff); /* Degradado de azul a blanco */
   }
   
-  ion-header {
-    --ion-background-color: #004a99; /* Color de fondo azul oscuro */
-  }
-  
   ion-toolbar {
-    --ion-background-color: transparent; /* Transparente para permitir que el fondo azul se vea */
-    --color: white; /* Texto en blanco para contraste */
+    --background: #007bff; /* Azul para el encabezado */
+    --color: white;
   }
   
   .login-card {

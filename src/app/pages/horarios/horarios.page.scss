@@ -1,24 +1,49 @@
-ion-segment-button {
-  flex: 1;
-  text-align: center;
+ion-toolbar {
+  --background: #007bff; /* Azul para el encabezado */
+  --color: white;
+}
+
+ion-content {
+  --background: white; /* Fondo blanco para el contenido */
 }
 
 .classes-container {
-  height: 100%;
-  overflow-y: auto;
+  padding: 16px;
 }
-
-
 
 .class-image {
   width: 50px;
   height: 50px;
-  object-fit: cover; /* Ajusta la imagen para que se recorte sin deformarse */
-  border-radius: 50%; /* Opcional: para hacer la imagen circular */
-  margin-right: 10px; /* Opcional: para agregar espacio entre la imagen y el texto */
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+ion-segment-button {
+  --background: white;
+  --color-checked: #007bff;
+  --indicator-color: #007bff;
+}
+
+ion-button {
+  --background: #007bff;
+  --color: white;
+  min-width: 80px; /* Ancho mínimo fijo */
+  text-align: center;
+  margin-top: 10px; /* Espaciado superior para evitar que se vea comprimido */
+  height: 40px; /* Altura fija */
 }
 
 
+ion-item-sliding {
+  --border-color: rgba(0, 0, 0, 0.1);
+}
 
+ion-item {
+  --background: white;
+  --border-radius: 10px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-
+ion-item-options {
+  --background: #f9f9f9;
+}
