@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  userName: string | null = '';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() { 
+    this.userName = localStorage.getItem('nombre');
+  }
+
+  navigateHorario() {
+    this.router.navigate(['/horarios']);
+  }
+
+  logout(){
+    localStorage.removeItem('nombre');
+    this.router.navigate(['/login']);
   }
 
 }
