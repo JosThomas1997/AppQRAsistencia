@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EstudiantesService } from 'src/app/services/estudiantes.service';
 
 @Component({
   selector: 'app-asistencia',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsistenciaPage implements OnInit {
   asistencia: any;
+  
+  // Especificar el tipo de estudiantes como un array de objetos con nombre y presente
+  estudiantes: { nombre: string; presente: boolean; }[] = [];
 
-  constructor() { }
+  constructor(private estudiantesService: EstudiantesService) {}
 
   ngOnInit() {
     // Cargar la información de asistencia desde localStorage
@@ -16,11 +20,12 @@ export class AsistenciaPage implements OnInit {
     if (record) {
       this.asistencia = JSON.parse(record);
     }
+
+    // Obtener la lista de estudiantes desde el servicio
+    this.estudiantes = this.estudiantesService.getEstudiantes();
   }
 
   handleAdditionalInfo() {
-    // Lógica para manejar la acción del botón "Ver Más"
-    // Puedes redirigir a otra página, mostrar un modal, etc.
     console.log('Ver Más button clicked');
   }
 }

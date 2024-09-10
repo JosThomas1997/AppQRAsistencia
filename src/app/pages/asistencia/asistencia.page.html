@@ -18,11 +18,36 @@
           <p><strong>Clase:</strong> {{ asistencia.clase }}</p>
           <p><strong>Fecha:</strong> {{ asistencia.fecha }}</p>
           <p><strong>Hora:</strong> {{ asistencia.hora }}</p>
+
+          <!-- Lista de asistencia con diseño de Ionic -->
+          <ion-list>
+            <ion-item *ngFor="let estudiante of estudiantes">
+              <ion-avatar slot="start">
+                <img src="https://www.ionicframework.com/docs/demos/api/avatar/avatar.svg" alt="Avatar">
+              </ion-avatar>
+              <ion-label>
+                <h2>{{ estudiante.nombre }}</h2>
+                <p>
+                  Asistencia:
+                  <ion-icon [name]="estudiante.presente ? 'checkmark-circle' : 'close-circle'"
+                            [color]="estudiante.presente ? 'success' : 'danger'"></ion-icon>
+                  {{ estudiante.presente ? 'Presente' : 'Ausente' }}
+                </p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
         </div>
+
         <div *ngIf="!asistencia" class="no-info">
           <ion-icon name="alert-circle-outline" class="no-info-icon"></ion-icon>
           <p>No hay información de asistencia disponible.</p>
         </div>
+
+        <ion-button expand="full" class="custom-button" (click)="handleAdditionalInfo()">
+          Ver Más
+        </ion-button>
+        
+        
       </ion-card-content>
     </ion-card>
   </div>

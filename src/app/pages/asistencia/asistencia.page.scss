@@ -6,21 +6,19 @@ ion-card-content {
   font-size: 1.2em;
 }
 
-
-
 .attendance-card {
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin: 20px;
-  padding: 20px; /* Aumenta el padding para más espacio interno */
-  background: #fff; /* Fondo blanco para el card */
+  padding: 20px;
+  background: #fff;
 }
 
 .card-title {
   font-size: 1.4rem;
   font-weight: bold;
   text-align: center;
-  color: #0056b3; /* Azul más oscuro para el título */
+  color: #0056b3;
 }
 
 ion-card-content p {
@@ -30,6 +28,64 @@ ion-card-content p {
   padding: 5px 0;
 }
 
+/* Estilos para la lista de asistencia */
+ion-list {
+  margin-top: 10px;
+}
+
+ion-item {
+  --background: #f9f9f9;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ion-avatar {
+  margin-right: 12px;
+}
+
+ion-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+ion-label h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+ion-label p {
+  display: inline-block;
+  font-size: 1rem;
+  margin: 0;
+  padding: 5px;
+  width: fit-content; /* Ajusta el ancho del p */
+  max-width: 120px; /* Ajusta el máximo ancho según sea necesario */
+}
+
+ion-icon {
+  font-size: 1.5rem;
+}
+
+.custom-button {
+  --background: linear-gradient(135deg, #007bff, #ffffff); /* Degradado de azul a blanco */
+  --background-activated: linear-gradient(135deg, #0056b3, #e0e0e0); /* Degradado activado: azul oscuro a gris */
+  --background-focused: linear-gradient(135deg, #007bff, #ffffff); /* Degradado cuando está enfocado */
+  --border-radius: 8px; /* Redondeo opcional de las esquinas */
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+}
+
+
+.custom-button:active {
+  --background: linear-gradient(135deg, #0056b3, #e0e0e0); /* Degradado cuando el botón está presionado */
+}
+
+
 .no-info {
   text-align: center;
   color: #888;
@@ -38,6 +94,6 @@ ion-card-content p {
 
 .no-info-icon {
   font-size: 2rem;
-  color: #ff9800; /* Color de alerta */
+  color: #ff9800;
   margin-bottom: 10px;
 }
