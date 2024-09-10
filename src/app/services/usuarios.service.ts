@@ -7,33 +7,38 @@ import { Usuario } from '../interfaces/usuario';
 export class UsuariosService {
 
   usuarios: Usuario[] = [
-    { 'email':'admin@admin.cl','pass':'admin123','tipo':'admin','name':''},
-    { 'email':'user@user.cl','pass':'user123','tipo':'usuario','name':''},
-    { 'email':'invi@invi.cl','pass':'invitado','tipo':'invitado','name':''},
-  ]
+    { 'email': 'admin@admin.cl', 'pass': 'admin123', 'tipo': 'admin', 'name': 'admin' },
+    { 'email': 'user@user.cl', 'pass': 'user123', 'tipo': 'usuario', 'name': '' },
+    { 'email': 'invi@invi.cl', 'pass': 'invitado', 'tipo': 'invitado', 'name': '' },
+  ];
 
   constructor() { }
 
-  
 
   getUsuarios() {
     return this.usuarios;
   }
 
-  getUsuarioByEmail() {
-
+ 
+  getUsuarioByEmail(email: string): Usuario | undefined {
+    return this.usuarios.find(usuario => usuario.email === email);
   }
 
+  
   addUsuario(usuario: Usuario) {
     this.usuarios.push(usuario);
   }
 
-  deleteUsuario() {
 
+  deleteUsuario(email: string) {
+    this.usuarios = this.usuarios.filter(usuario => usuario.email !== email);
   }
 
-  updateUsuario() {
-
+  
+  updateUsuario(email: string, updatedUsuario: Usuario) {
+    const index = this.usuarios.findIndex(usuario => usuario.email === email);
+    if (index !== -1) {
+      this.usuarios[index] = updatedUsuario;
+    }
   }
-
 }
