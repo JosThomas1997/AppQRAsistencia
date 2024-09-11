@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EstudiantesService } from 'src/app/services/estudiantes.service';
+import { UsuariosService } from 'src/app/services/usuarios.service'; // Asegúrate de tener la ruta correcta
 
 @Component({
   selector: 'app-asistencia',
@@ -8,11 +9,13 @@ import { EstudiantesService } from 'src/app/services/estudiantes.service';
 })
 export class AsistenciaPage implements OnInit {
   asistencia: any;
-  
-  // Especificar el tipo de estudiantes como un array de objetos con nombre y presente
   estudiantes: { nombre: string; presente: boolean; }[] = [];
+  esProfesor: boolean = false;
 
-  constructor(private estudiantesService: EstudiantesService) {}
+  constructor(
+    private estudiantesService: EstudiantesService,
+    private usuariosService: UsuariosService // Inyecta el servicio de usuarios
+  ) {}
 
   ngOnInit() {
     // Cargar la información de asistencia desde localStorage
@@ -23,6 +26,19 @@ export class AsistenciaPage implements OnInit {
 
     // Obtener la lista de estudiantes desde el servicio
     this.estudiantes = this.estudiantesService.getEstudiantes();
+
+    // Verificar el tipo de usuario
+    this.verificarUsuario();
+  }
+
+  verificarUsuario() {
+    const email = localStorage.getItem('userEmail'); // Obtén el email del usuario del localStorage
+    if (email) {
+      const usuario = this.usuariosService.getUsuarioByEmail(email);
+      if (usuario && usuario.tipo === 'profesor') {
+        this.esProfesor = true;
+      }
+    }
   }
 
   handleAdditionalInfo() {

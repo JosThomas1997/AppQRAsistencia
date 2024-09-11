@@ -9,7 +9,7 @@ export class UsuariosService {
   usuarios: Usuario[] = [
     { 'email': 'admin@admin.cl', 'pass': 'admin123', 'tipo': 'admin', 'name': 'admin' },
     { 'email': 'user@user.cl', 'pass': 'user123', 'tipo': 'usuario', 'name': '' },
-    { 'email': 'invi@invi.cl', 'pass': 'invitado', 'tipo': 'invitado', 'name': '' },
+    { 'email': 'profesor@duoc.cl', 'pass': 'profesor123', 'tipo': 'profesor', 'name': 'Profesor' },
   ];
 
   constructor() { }
@@ -24,7 +24,7 @@ export class UsuariosService {
     return this.usuarios.find(usuario => usuario.email === email);
   }
 
-  
+
   addUsuario(usuario: Usuario) {
     this.usuarios.push(usuario);
   }
@@ -34,7 +34,7 @@ export class UsuariosService {
     this.usuarios = this.usuarios.filter(usuario => usuario.email !== email);
   }
 
-  
+
   updateUsuario(email: string, updatedUsuario: Usuario) {
     const index = this.usuarios.findIndex(usuario => usuario.email === email);
     if (index !== -1) {
