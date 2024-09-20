@@ -41,7 +41,8 @@ const routes: Routes = [
   {
     path: 'invitado-dashboard',
     loadChildren: () => import('./pages/invitado/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },  {
+  },
+  {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
@@ -49,6 +50,15 @@ const routes: Routes = [
     path: 'passreco',
     loadChildren: () => import('./pages/passreco/passreco.module').then( m => m.PassrecoPageModule)
   },
+  {
+    path: 'profesor',
+    loadChildren: () => import('./pages/profesor/profesor.module').then( m => m.ProfesorPageModule)
+  },
+  {
+    path: 'profesorasis',
+    loadChildren: () => import('./pages/profesor/profesorasis/profesorasis.module').then(m => m.ProfesorasisPageModule)
+  }
+  
 
 
 

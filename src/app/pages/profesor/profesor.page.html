@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <ion-toolbar>
+    <ion-title class="centered-title">Página Principal</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background-gradient">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- CARD PARA LA BIENVENIDA -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="custom-card-title">Hola, 1{{ userName }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="custom-card-content">
+      <img alt="Silhouette of mountains" src="assets/imgs/Logo-RegistrAPP.png" />
+    </ion-card-content>
+
+    <!-- Nuevo diseño para los botones de Horario y Asistencia -->
+    <div class="button-container">
+      <ion-button class="custom-button" expand="block" (click)="navigateHorario()">
+        <ion-icon name="time-sharp" slot="start"></ion-icon>
+        Horario
+      </ion-button>
+
+      <ion-button class="custom-button" expand="block" (click)="navigateAsistencia()">
+        <ion-icon name="checkmark-sharp" slot="start"></ion-icon>
+        Asistencia
+      </ion-button>
+    </div>
+  </ion-card>
+</ion-content>

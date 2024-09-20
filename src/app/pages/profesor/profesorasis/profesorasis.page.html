@@ -1,0 +1,35 @@
+<ion-content class="ion-padding">
+  <h1 class="title">Sistema de Asistencia</h1>
+  
+  <div class="form-container">
+    <ion-item>
+      <ion-label position="floating">Nombre de la clase</ion-label>
+      <ion-input type="text" [(ngModel)]="className"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Fecha</ion-label>
+      <ion-input type="date" [(ngModel)]="date"></ion-input>
+    </ion-item>
+  </div>
+
+  <div class="attendance-container">
+    <div class="attendance-header">
+      <div class="name-column">Nombre</div>
+      <div class="status-column">Status</div>
+    </div>
+    <div class="attendance-row" *ngFor="let student of students">
+      <div class="name-column">{{ student.nombre }}</div>
+      <div class="status-column">
+        <ion-select [(ngModel)]="student.estado" interface="popover">
+          <ion-select-option value="present">Presente</ion-select-option>
+          <ion-select-option value="absent">Ausente</ion-select-option>
+          <ion-select-option value="justified">Justificado</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+  </div>
+
+  <ion-button expand="block" (click)="submitAttendance()" class="submit-button">
+    Confirmar Asistencia
+  </ion-button>
+</ion-content>

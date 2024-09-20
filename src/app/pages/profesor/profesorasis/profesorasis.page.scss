@@ -1,0 +1,127 @@
+ion-content {
+    --background: #f4f5f8;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .form-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  
+    ion-item {
+      --background: transparent;
+      --border-color: #dfe6e9;
+      --highlight-height: 2px;
+  
+      ion-label {
+        color: #34495e;
+        font-weight: 600;
+      }
+  
+      ion-input {
+        --color: #2c3e50;
+        font-weight: 500;
+      }
+    }
+  }
+  
+  .attendance-container {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .attendance-header {
+    display: flex;
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+  }
+  
+  .attendance-row {
+    display: flex;
+    border-bottom: 1px solid #ecf0f1;
+    transition: background-color 0.3s ease;
+  
+    &:last-child {
+      border-bottom: none;
+    }
+  
+    &:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+  
+    &:hover {
+      background-color: #e8f4fd;
+    }
+  }
+  
+  .name-column, .status-column {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .name-column {
+    flex: 1;
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  .status-column {
+    flex: 1;
+  
+    ion-select {
+      width: 100%;
+      max-width: 100%;
+      --placeholder-color: #7f8c8d;
+      --placeholder-opacity: 1;
+      color: #2c3e50;
+      font-weight: 500;
+    }
+  }
+  
+  .submit-button {
+    margin-top: 20px;
+    --background: #2ecc71;
+    --background-activated: #27ae60;
+    --box-shadow: 0 4px 6px rgba(46, 204, 113, 0.3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  // Custom styles for Ionic components
+  ion-select {
+    --placeholder-color: #7f8c8d;
+    --placeholder-opacity: 1;
+  }
+  
+  ion-select-option {
+    color: #2c3e50;
+    font-weight: 500;
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 576px) {
+    .attendance-header, .attendance-row {
+      font-size: 14px;
+    }
+  
+    .name-column, .status-column {
+      padding: 10px;
+    }
+  }

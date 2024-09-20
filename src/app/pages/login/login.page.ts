@@ -61,7 +61,7 @@ export class LoginPage implements OnInit {
         } else if (user.tipo === 'usuario') {
           this.router.navigate(['/home']);
         } else {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/profesor']);
         }
        }, 2000);
     } else {
