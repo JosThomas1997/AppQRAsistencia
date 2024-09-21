@@ -10,6 +10,10 @@ const routes: Routes = [
   },  {
     path: 'profesorasis',
     loadChildren: () => import('./profesorasis/profesorasis.module').then( m => m.ProfesorasisPageModule)
+  },
+  {
+    path: 'profesorasisqr',
+    loadChildren: () => import('./profesorasisqr/profesorasisqr.module').then( m => m.ProfesorasisqrPageModule)
   }
 
 ];

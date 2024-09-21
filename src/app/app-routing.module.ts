@@ -57,6 +57,10 @@ const routes: Routes = [
   {
     path: 'profesorasis',
     loadChildren: () => import('./pages/profesor/profesorasis/profesorasis.module').then(m => m.ProfesorasisPageModule)
+  },
+  {
+    path: 'profesorasisqr',
+    loadChildren: () => import('./pages/profesor/profesorasisqr/profesorasisqr.module').then(m => m.ProfesorasisqrPageModule)
   }
   
 

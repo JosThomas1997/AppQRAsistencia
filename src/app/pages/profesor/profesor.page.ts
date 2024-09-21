@@ -26,6 +26,9 @@ export class ProfesorPage implements OnInit {
   navigateAsistencia() {
     this.router.navigate(['/profesorasis']);
   }
+  navigateAsistenciaqr() {
+    this.router.navigate(['/profesorasisqr']);
+  }
 
   logout() {
     localStorage.removeItem('nombre'); // Elimina el nombre del localStorage

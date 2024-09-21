@@ -1,0 +1,150 @@
+ion-content {
+    --background: #f0f3f5;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .form-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  
+    ion-item {
+      --background: transparent;
+      --border-color: #dfe6e9;
+      --highlight-height: 2px;
+  
+      ion-label {
+        color: #34495e;
+        font-weight: 600;
+      }
+  
+      ion-input {
+        --color: #2c3e50;
+        font-weight: 500;
+      }
+    }
+  }
+  
+  .qr-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    .qr-code {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 15px;
+  
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  
+    .qr-instruction {
+      text-align: center;
+      color: #34495e;
+      font-weight: 500;
+    }
+  }
+  
+  .attendance-container {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+    padding: 15px;
+    background-color: #ecf0f1;
+    margin: 0;
+  }
+  
+  .attendance-header {
+    display: flex;
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+  }
+  
+  .attendance-row {
+    display: flex;
+    border-bottom: 1px solid #ecf0f1;
+    transition: background-color 0.3s ease;
+  
+    &:last-child {
+      border-bottom: none;
+    }
+  
+    &:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+  
+    &:hover {
+      background-color: #e8f4fd;
+    }
+  }
+  
+  .name-column, .time-column {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .name-column {
+    flex: 2;
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  .time-column {
+    flex: 1;
+    color: #7f8c8d;
+  }
+  
+  .end-button {
+    margin-top: 20px;
+    --background: #e74c3c;
+    --background-activated: #c0392b;
+    --box-shadow: 0 4px 6px rgba(231, 76, 60, 0.3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 576px) {
+    .attendance-header, .attendance-row {
+      font-size: 14px;
+    }
+  
+    .name-column, .time-column {
+      padding: 10px;
+    }
+  
+    .qr-container .qr-code {
+      width: 150px;
+      height: 150px;
+    }
+  }
