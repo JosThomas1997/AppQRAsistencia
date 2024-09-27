@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/firebase/auth.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder, 
     private alertController: AlertController, 
     private loadingController: LoadingController,
-    private usuariosService: UsuariosService
+    private usuariosService: UsuariosService,
+    private authService : AuthService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -42,29 +44,39 @@ export class LoginPage implements OnInit {
      });
      await loading.present();
 
-    const email = this.emailValue;
-    const pass = this.passValue;
+    
 
     // BUSCAMOS AL USUARIO EN LA BD
   
-    const usuarios = await this.usuariosService.getUsuarios();
+    /*const usuarios = await this.usuariosService.getUsuarios();
     const user = usuarios.find(u => u.email === email && u.pass === pass);
+    */
+    
+    
+     try{
+    const email = this.emailValue;
+    const pass = this.passValue;
 
-    if (user) {
-      // Comenté  la parte de `setTimeout` pa depurar porque el loading me quedó infinito xd
-       setTimeout(async () => {
-         await loading.dismiss();
-         localStorage.setItem('nombre', user.name);
+    const usuarioFirebase = await this.authService.login(email as string, pass as string);
+      
+      if (usuarioFirebase.user) {
 
-        if (user.tipo === 'admin') {
-          this.router.navigate(['/admin-dashboard']);
-        } else if (user.tipo === 'usuario') {
-          this.router.navigate(['/home']);
-        } else {
-          this.router.navigate(['/profesor']);
-        }
-       }, 2000);
-    } else {
+        // MOMENTANEAMENTE
+        const tipo = 'admin' as string;
+         setTimeout(async () => {
+           await loading.dismiss();
+           localStorage.setItem('usuarioLogin', email as string );
+  
+          if (tipo === 'admin') {
+            this.router.navigate(['/admin-dashboard']);
+          } else if (tipo === 'usuario') {
+            this.router.navigate(['/home']);
+          } else {
+            this.router.navigate(['/profesor']);
+          }
+         }, 2000);
+      } 
+     } catch(error) {
       const alert = await this.alertController.create({
         header: 'Acceso denegado',
         message: 'Usuario o contraseña incorrecta.',
