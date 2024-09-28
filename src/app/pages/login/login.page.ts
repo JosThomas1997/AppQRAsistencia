@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/firebase/auth.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -77,12 +78,14 @@ export class LoginPage implements OnInit {
          }, 2000);
       } 
      } catch(error) {
-      const alert = await this.alertController.create({
-        header: 'Acceso denegado',
-        message: 'Usuario o contraseña incorrecta.',
-        buttons: ['OK']
+      Swal.fire({
+        title: "Error!",
+        text: "Error en las credenciales, intentelo nuevamente!",
+        icon: "error",
+        confirmButtonText: "OK",
+        heightAuto: false
       });
-      await alert.present();
+
       this.emailValue = '';
       this.passValue = '';
     }

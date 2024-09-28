@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MenuController, AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/interfaces/usuario';
+import { AuthService } from 'src/app/services/firebase/auth.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
@@ -10,12 +12,15 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class DashboardPage implements OnInit {
 
-  usuarios: Usuario[] = [];
+  usuarios: any = [];
 
   constructor(
     private menuController: MenuController,
     private usuariosServices: UsuariosService,
-    private alertCtrl: AlertController  
+    private alertCtrl: AlertController,
+    private authService: AuthService,
+    private firestore: AngularFirestore
+
   ) { }
 
   ngOnInit() {
@@ -24,7 +29,10 @@ export class DashboardPage implements OnInit {
   }
 
   config() {
-    this.usuarios = this.usuariosServices.getUsuarios();
+    this.firestore.collection('usuarios').valueChanges().subscribe(aux => {
+    this.usuarios = aux;
+
+    })
   }
 
 

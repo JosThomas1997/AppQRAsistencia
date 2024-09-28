@@ -8,9 +8,9 @@
   <ion-card class="login-card">
     <img alt="DUOC UC Logo" src="assets/imgs/Logo-RegistrAPP.png" class="logo-image" />
     <ion-card-content>
-      <form [formGroup]="resetForm">
+      <form [formGroup]="resetForm" (ngSubmit)="recoveryPassword()">
         <ion-item class="input-item">
-          <ion-input formControlName="email" [(ngModel)]="emailValue" type="email" label="Correo Electrónico:" labelPlacement="floating" placeholder="Ej: pedro@example.com"></ion-input>
+          <ion-input formControlName="email" [(ngModel)]="email" type="email" label="Correo Electrónico:" labelPlacement="floating" placeholder="Ej: pedro@example.com"></ion-input>
         </ion-item>
         <ion-text position="stacked" color="danger" *ngIf="resetForm.get('email')?.hasError('required')">
           El correo es requerido!
@@ -19,7 +19,7 @@
           El correo es inválido!
         </ion-text>
 
-        <ion-button expand="full" (click)="resetPassword()" class="login-button">Recuperar Contraseña</ion-button>
+        <ion-button expand="full" type="submit" class="login-button">Recuperar Contraseña</ion-button>
 
         <div class="login-text">
           ¿Recuerdas tu contraseña? 
