@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { Usuario } from 'src/app/interfaces/usuario';
 import { AuthService } from 'src/app/services/firebase/auth.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import Swal from 'sweetalert2';
@@ -23,7 +25,8 @@ export class LoginPage implements OnInit {
     private alertController: AlertController, 
     private loadingController: LoadingController,
     private usuariosService: UsuariosService,
-    private authService : AuthService
+    private authService : AuthService,
+    private firestore : AngularFirestore
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -38,46 +41,35 @@ export class LoginPage implements OnInit {
   
 
   async login() {
-    // Comenté  la parte de `setTimeout` pa depurar porque el loading me quedó infinito xd
-     const loading = await this.loadingController.create({
-       message: 'Cargando.....',
-       duration: 2000
-     });
-     await loading.present();
-
+    const email = this.loginForm.value.email;
+    const pass = this.loginForm.value.pass;
     
-
-    // BUSCAMOS AL USUARIO EN LA BD
+    const loading = await this.loadingController.create({
+      message: 'Cargando....',
+      duration: 2000
+    });
+    
+    await loading.present();
   
-    /*const usuarios = await this.usuariosService.getUsuarios();
-    const user = usuarios.find(u => u.email === email && u.pass === pass);
-    */
-    
-    
-     try{
-    const email = this.emailValue;
-    const pass = this.passValue;
-
-    const usuarioFirebase = await this.authService.login(email as string, pass as string);
+    try {
+      const usuarioLogeado = await this.authService.login(email, pass);
       
-      if (usuarioFirebase.user) {
-
-        // MOMENTANEAMENTE
-        const tipo = 'admin' as string;
-         setTimeout(async () => {
-           await loading.dismiss();
-           localStorage.setItem('usuarioLogin', email as string );
+      if (usuarioLogeado.user) {
+        const usuario = await this.firestore.collection('usuarios').doc(usuarioLogeado.user.uid).get().toPromise();
+        const userData = usuario?.data() as Usuario;
   
-          if (tipo === 'admin') {
-            this.router.navigate(['/admin-dashboard']);
-          } else if (tipo === 'usuario') {
-            this.router.navigate(['/home']);
-          } else {
-            this.router.navigate(['/profesor']);
-          }
-         }, 2000);
-      } 
-     } catch(error) {
+        await loading.dismiss(); 
+  
+        if (userData.tipo === 'admin') {
+          this.router.navigate(['/admin-dashboard']);
+        } else if (userData.tipo === 'usuario') {
+          this.router.navigate(['/home']);
+        } else {
+          this.router.navigate(['/profesor']);
+        }
+      }
+    } catch (error) {
+      await loading.dismiss();
       Swal.fire({
         title: "Error!",
         text: "Error en las credenciales, intentelo nuevamente!",
@@ -85,12 +77,9 @@ export class LoginPage implements OnInit {
         confirmButtonText: "OK",
         heightAuto: false
       });
-
-      this.emailValue = '';
-      this.passValue = '';
+  
+      this.loginForm.reset(); 
     }
-   
-    // cierre del loadingController
-     await loading.dismiss();
   }
-}
+
+}  
