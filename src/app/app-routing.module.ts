@@ -61,7 +61,12 @@ const routes: Routes = [
   {
     path: 'profesorasisqr',
     loadChildren: () => import('./pages/profesor/profesorasisqr/profesorasisqr.module').then(m => m.ProfesorasisqrPageModule)
+  },
+  {
+    path: 'edit-user/:uid',
+    loadChildren: () => import('./pages/edit-user/edit-user.module').then( m => m.EditUserPageModule)
   }
+
   
 
 
