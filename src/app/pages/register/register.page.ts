@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { AuthService } from 'src/app/services/firebase/auth.service';
+import { MensajesService } from 'src/app/services/mensajes.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import Swal from 'sweetalert2';
 
@@ -26,7 +27,8 @@ export class RegisterPage implements OnInit {
     private loadingController: LoadingController,
     private usuariosService: UsuariosService,
     private authService: AuthService,
-    private firestore : AngularFirestore
+    private firestore : AngularFirestore,
+    private mensajes : MensajesService
 
   ) {
     this.registerForm = this.formBuilder.group({
@@ -61,28 +63,16 @@ export class RegisterPage implements OnInit {
         tipo: 'profesor'
       });
 
-      Swal.fire({
-        title: "Éxito!",
-        text: "Cuenta creada exitosamente",
-        icon: "success",
-        confirmButtonText: "OK",
-        heightAuto: false
-      });
-  
-
+      this.mensajes.mensaje('Cuenta creada exitosamente!','success','Éxito!').then(()=>{
+        this.router.navigate(['/login']);
+      })
+      
     }
-
     this.router.navigate(['/login']);
 
    } catch (error) {
-    Swal.fire({
-      title: "Error!",
-      text: "Error al crear la cuenta de usuario, intentelo nuevamente!",
-      icon: "error",
-      confirmButtonText: "OK",
-      heightAuto: false
-    });
-
+    this.mensajes.mensaje('Error al crear la cuenta, intente de nuevo!','error', 'Error!')
+    
    }
 
   }
