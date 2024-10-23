@@ -1,6 +1,7 @@
 export interface Usuario {
-    email:string;
-    pass:string;
-    tipo:string;
-    name:string;
+  name: string;
+  email: string;
+  tipo: string;
+  pass: string;
+  estado?: string; // Opcional: Agregar estado si es necesario
 }

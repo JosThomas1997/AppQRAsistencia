@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Horarios</ion-title>
+    <ion-title>Horarios1</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -26,39 +26,15 @@
     </ion-segment-button>
   </ion-segment>
 
-  <!-- Botón de código QR -->
-  <ion-content>
-    <div class="classes-container">
-      <ion-list>
-        <ion-item-sliding *ngFor="let clase of getClasesporDia()">
-          <ion-item>
-            <img [src]="clase.imagen" alt="Imagen de la clase" class="class-image">
-            <ion-label>
-              <h2>{{ clase.nombre }}</h2>
-              <ng-container *ngFor="let block of clase.bloques">
-                <p>{{ block.start }} - {{ block.end }}</p>
-              </ng-container>
-            </ion-label>
-            <ion-button (click)="selectClass(clase)" color="primary" fill="outline">
-              Generar Código QR
-            </ion-button>
-          </ion-item>
-          <ion-item-options side="end">
-            <ion-item-option color="tertiary">
-              <ion-icon slot="start" name="information-circle-outline"></ion-icon>
-              Detalle
-            </ion-item-option>
-            <ion-item-option color="secondary">
-              <ion-icon slot="start" name="create-outline"></ion-icon>
-              Editar
-            </ion-item-option>
-            <ion-item-option color="danger">
-              <ion-icon slot="start" name="trash-outline"></ion-icon>
-              Eliminar
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-      </ion-list>
-    </div>
-  </ion-content>
+  <ion-list>
+    <ion-item *ngFor="let clase of clases$ | async">
+      <ion-label>
+        <h2>{{ clase.materia }}</h2>
+        <p>{{ clase.horaInicio }} - {{ clase.horaFin }}</p>
+      </ion-label>
+      <ion-button (click)="selectClass(clase)" color="primary" fill="outline">
+        Generar Código QR
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>

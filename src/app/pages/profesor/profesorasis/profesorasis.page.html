@@ -1,35 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registrar Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding">
-  <h1 class="title">Sistema de Asistencia</h1>
-  
-  <div class="form-container">
-    <ion-item>
-      <ion-label position="floating">Nombre de la clase</ion-label>
-      <ion-input type="text" [(ngModel)]="className"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Fecha</ion-label>
-      <ion-input type="date" [(ngModel)]="date"></ion-input>
-    </ion-item>
-  </div>
+  <h2>Selecciona una Clase</h2>
 
-  <div class="attendance-container">
-    <div class="attendance-header">
-      <div class="name-column">Nombre</div>
-      <div class="status-column">Status</div>
-    </div>
-    <div class="attendance-row" *ngFor="let student of students">
-      <div class="name-column">{{ student.nombre }}</div>
-      <div class="status-column">
-        <ion-select [(ngModel)]="student.estado" interface="popover">
-          <ion-select-option value="present">Presente</ion-select-option>
-          <ion-select-option value="absent">Ausente</ion-select-option>
-          <ion-select-option value="justified">Justificado</ion-select-option>
+  <!-- Seleccionar Clase -->
+  <ion-item>
+    <ion-label>Clase</ion-label>
+    <ion-select [(ngModel)]="selectedClaseId" (ionChange)="getAlumnos()">
+      <ion-select-option *ngFor="let clase of clases$ | async" [value]="clase.id">
+        {{ clase.materia }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Lista de Estudiantes -->
+  <div *ngIf="alumnos.length > 0">
+    <h3>Alumnos</h3>
+    <ion-list>
+      <ion-item *ngFor="let alumno of alumnos">
+        <ion-label>{{ alumno.name }}</ion-label>
+        <ion-select [(ngModel)]="alumno.estado" interface="popover">
+          <ion-select-option value="presente">Presente</ion-select-option>
+          <ion-select-option value="ausente">Ausente</ion-select-option>
+          <ion-select-option value="justificado">Justificado</ion-select-option>
         </ion-select>
-      </div>
-    </div>
+      </ion-item>
+      
+    </ion-list>
+
+    <!-- Botón para Guardar Asistencia -->
+    <ion-button expand="block" (click)="guardarAsistencia()">Guardar Asistencia</ion-button>
   </div>
 
-  <ion-button expand="block" (click)="submitAttendance()" class="submit-button">
-    Confirmar Asistencia
-  </ion-button>
+  <!-- Mensaje si no hay alumnos -->
+  <div *ngIf="alumnos.length === 0 && selectedClaseId">
+    <p>No hay alumnos registrados para esta clase.</p>
+  </div>
 </ion-content>

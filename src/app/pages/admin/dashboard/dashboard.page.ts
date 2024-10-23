@@ -4,7 +4,8 @@ import { MenuController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { AuthService } from 'src/app/services/firebase/auth.service';
-import { UsuariosService } from 'src/app/services/usuarios.service';
+import { UsuarioService } from 'src/app/services/usuarios.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,7 @@ export class DashboardPage implements OnInit {
 
   constructor(
     private menuController: MenuController,
-    private usuariosServices: UsuariosService,
+    private usuariosServices: UsuarioService,
     private alertCtrl: AlertController,
     private authService: AuthService,
     private firestore: AngularFirestore,

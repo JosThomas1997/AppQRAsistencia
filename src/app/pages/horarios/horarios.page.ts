@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClasesPorDia, Clase } from 'src/app/interfaces/clase';
 import { AlertController } from '@ionic/angular';
+import { HorarioService } from 'src/app/services/firebase/horario.service.service'; // Importar el servicio
+import { Clase } from 'src/app/interfaces/clase';
+import { Observable, of } from 'rxjs'; // Importar 'of' de rxjs
 
 @Component({
   selector: 'app-horarios',
@@ -10,55 +12,32 @@ import { AlertController } from '@ionic/angular';
 })
 export class HorariosPage implements OnInit {
   diaDefault: string = 'lunes'; 
-  selectedClass: Clase | null = null;
+  clases$: Observable<Clase[]> = of([]); // Inicializar como un Observable vacío
 
-  // Asegúrate de incluir todos los días de la semana
-  clases: ClasesPorDia = {
-    lunes: [
-      { nombre: 'Arquitectura', bloques: [{ start: '10:00 AM', end: '11:30 AM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' },
-      { nombre: 'Programación Móvil', bloques: [{ start: '8:00 AM', end: '9:30 AM' }, { start: '10:00 AM', end: '11:00 AM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' }
-    ],
-    martes: [
-      { nombre: 'Calidad de Software', bloques: [{ start: '9:00 AM', end: '10:30 AM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' },
-      { nombre: 'Matemática Descriptiva', bloques: [{ start: '11:00 AM', end: '12:30 PM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' }
-    ],
-    miércoles: [
-      { nombre: 'Programación Móvil', bloques: [{ start: '9:00 AM', end: '10:30 AM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' },
-      { nombre: 'Programación Móvil', bloques: [{ start: '1:00 PM', end: '2:30 PM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' }
-    ],
-    jueves: [
-      { nombre: 'Portafolio 4', bloques: [{ start: '10:00 AM', end: '11:30 AM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' },
-      { nombre: 'Ética para el Trabajo', bloques: [{ start: '2:00 PM', end: '3:30 PM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' }
-    ],
-    viernes: [
-      { nombre: 'Calidad de Software', bloques: [{ start: '9:00 AM', end: '10:30 AM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' },
-      { nombre: 'Arquitectura', bloques: [{ start: '11:00 AM', end: '12:30 PM' }], imagen: 'assets/imgs/book-bookmark-svgrepo-com.png' }
-    ],
-  };
-
-  constructor(private router: Router, private alertController: AlertController) { }
+  constructor(
+    private router: Router,
+    private alertController: AlertController,
+    private horarioService: HorarioService // Inyectamos el servicio
+  ) {}
 
   ngOnInit() {
+    this.getClases(); // Llamamos la función que obtiene las clases
   }
 
-  getClasesporDia(): Clase[] {
-    return this.clases[this.diaDefault] || [];
-  }
-
-  verDetalleclases(clase: Clase) {
-    this.router.navigate(['detalle-clases', clase.nombre]);
+  // Obtener clases por el día seleccionado
+  getClases() {
+    this.clases$ = this.horarioService.getClasesPorDia(this.diaDefault);
   }
 
   onDayChange(event: any) {
     this.diaDefault = event.detail.value;
+    this.getClases(); // Volvemos a cargar las clases para el nuevo día
   }
 
   async selectClass(clase: Clase) {
-    this.selectedClass = clase;
-
     const alert = await this.alertController.create({
       header: 'Generar Código QR',
-      message: `¿Deseas generar un código QR para la clase ${clase.nombre}?`,
+      message: `¿Deseas generar un código QR para la clase ${clase.materia}?`,
       buttons: [
         {
           text: 'Cancelar',
@@ -67,7 +46,7 @@ export class HorariosPage implements OnInit {
         {
           text: 'Confirmar',
           handler: () => {
-            this.generateQRCode();
+            this.generateQRCode(clase);
           },
         },
       ],
@@ -76,20 +55,7 @@ export class HorariosPage implements OnInit {
     await alert.present();
   }
 
-  generateQRCode() {
-    if (this.selectedClass) {
-      // Aquí puedes implementar la lógica para generar el código QR.
-      // Por ahora solo muestra un mensaje.
-      alert(`Código QR generado para la clase ${this.selectedClass.nombre} `);
-      
-      // Guardar la fecha y hora actual en el almacenamiento local.
-      const now = new Date();
-      const record = {
-        clase: this.selectedClass.nombre,
-        fecha: now.toLocaleDateString(),
-        hora: now.toLocaleTimeString()
-      };
-      localStorage.setItem('asistencia', JSON.stringify(record));
-    }
+  generateQRCode(clase: Clase) {
+    alert(`Código QR generado para la clase ${clase.materia}`);
   }
 }

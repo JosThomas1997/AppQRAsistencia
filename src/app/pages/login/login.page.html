@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Inicia Sesion</ion-title>
+    <ion-title>Inicia Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,40 +9,33 @@
     <img alt="DUOC UC Logo" src="assets/imgs/Logo-RegistrAPP.png" class="logo-image" />
     <ion-card-content>
       <form [formGroup]="loginForm">
+        <!-- Formulario de login -->
         <ion-item class="input-item">
-          <ion-input formControlName="email" [(ngModel)]="emailValue" type="email" label="Correo electrónico :" labelPlacement="floating" placeholder="Ej: pedro@ejemplo.com"></ion-input>
+          <ion-input formControlName="email" type="email" placeholder="Correo"></ion-input>
         </ion-item>
-        <ion-text position="stacked" color="danger" *ngIf="loginForm.get('email')?.hasError('required')">
-          El correo es requerido!
-        </ion-text>
-        <ion-text position="stacked" color="danger" *ngIf="loginForm.get('email')?.hasError('email')">
-          El correo es inválido!
-        </ion-text>
-
         <ion-item class="input-item">
-          <ion-input formControlName="pass" [(ngModel)]="passValue" type="password" labelPlacement="floating" label="Contraseña:" placeholder="Ej: asd123"></ion-input>
+          <ion-input formControlName="pass" type="password" placeholder="Contraseña"></ion-input>
         </ion-item>
-        <ion-text position="stacked" color="danger" *ngIf="loginForm.get('pass')?.hasError('required')">
-          La contraseña es requerida!
-        </ion-text>
-        <ion-text position="stacked" color="danger" *ngIf="loginForm.get('pass')?.hasError('minlength')">
-          La contraseña tiene como min 6 caracteres!
-        </ion-text>
-
-        <ion-button expand="full" (click)="login()" class="login-button">Ingresar</ion-button>
-
-        <div class="register-text">
-          ¿Olvidaste tu contraseña? 
-          <a routerLink="/passreco" class="register-link">Recupérala aquí</a>
-        </div>
-        
-        <div class="register-text">
-          ¿No tienes cuenta? 
-          <a routerLink="/register" class="register-link">Haz clic aquí</a>
-        </div>
-        
-        
+        <ion-button expand="full" (click)="login()">Ingresar</ion-button>
       </form>
+
+      <!-- Enlaces de registrar y recuperar contraseña -->
+      <div class="register-text">
+        ¿No tienes cuenta? 
+        <a routerLink="/register" class="register-link">Haz clic aquí</a>
+      </div>
+
+      <div class="register-text">
+        ¿Olvidaste tu contraseña? 
+        <a routerLink="/passreco" class="register-link">Recupérala aquí</a>
+      </div>
     </ion-card-content>
   </ion-card>
+
+  <!-- Botón icónico para generar cuentas de usuarios en la esquina inferior derecha -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" size="small" (click)="generarUsuarios()">
+      <ion-icon name="person-add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

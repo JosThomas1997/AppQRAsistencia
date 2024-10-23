@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-
-interface Estudiante {
-  id: number;
-  nombre: string;
-  estado: 'presente' | 'ausente' | 'justificado';
-}
+import { Component, OnInit } from '@angular/core';
+import { ClaseService } from 'src/app/services/firebase/clase.service.service'; // Service para obtener las clases
+import { UsuarioService } from 'src/app/services/usuarios.service'; // Service para obtener los alumnos
+import { AsistenciaService } from 'src/app/services/firebase/asistencia.service.service';
+import { Observable } from 'rxjs';
+import { Clase } from 'src/app/interfaces/clase';
+import { Usuario } from 'src/app/interfaces/usuario';
+import { Asistencia } from 'src/app/interfaces/asistencia';
 
 @Component({
   selector: 'app-profesorasis',
@@ -13,32 +13,49 @@ interface Estudiante {
   styleUrls: ['./profesorasis.page.scss'],
 })
 export class ProfesorasisPage {
-  className: string = '';
-  date: string = new Date().toISOString().split('T')[0];
-  students: Estudiante[] = [
-    { id: 1, nombre: "Alice Johnson", estado: 'presente' },
-    { id: 2, nombre: "Bob Smith", estado: 'presente' },
-    { id: 3, nombre: "Charlie Brown", estado: 'presente' },
-    { id: 4, nombre: "Diana Ross", estado: 'presente' },
-    { id: 5, nombre: "Ethan Hunt", estado: 'presente' },
-    { id: 6, nombre: "Fiona Apple", estado: 'presente' },
-    { id: 7, nombre: "George Michael", estado: 'presente' },
-    { id: 8, nombre: "Hannah Montana", estado: 'presente' }
-  ];
+  clases$!: Observable<Clase[]>; // Modificado para evitar el error
+  alumnos: Array<Usuario & { estado?: string }> = []; // Añadimos 'estado' temporalmente
+  selectedClaseId: string = ''; // ID de la clase seleccionada
 
-  constructor(private alertController: AlertController) {}
+  constructor(
+    private claseService: ClaseService,
+    private usuarioService: UsuarioService,
+    private asistenciaService: AsistenciaService
+  ) {}
 
-  async submitAttendance() {
-    console.log('Clase:', this.className);
-    console.log('Fecha:', this.date);
-    console.log('Asistencia:', this.students);
+  ngOnInit() {
+    this.getClases(); // Obtener todas las clases al iniciar
+  }
 
-    const alert = await this.alertController.create({
-      header: 'Success',
-      message: 'Se ha enviado la asistencia exitosamente',
-      buttons: ['OK']
+  // Obtener las clases desde el ClaseService
+  getClases() {
+    this.clases$ = this.claseService.getClases();
+  }
+
+  // Obtener alumnos desde UsuarioService, filtrando por tipo 'alumno'
+  getAlumnos() {
+    this.usuarioService.getAlumnos().subscribe(data => {
+      // Inicializamos 'estado' para cada alumno
+      this.alumnos = data.map(alumno => ({ ...alumno, estado: 'presente' }));
     });
+  }
 
-    await alert.present();
+  // Guardar la asistencia en Firestore utilizando AsistenciaService
+  guardarAsistencia() {
+    const asistencia: Asistencia = {
+      claseId: this.selectedClaseId,
+      fecha: new Date().toISOString().split('T')[0], // Fecha actual en formato YYYY-MM-DD
+      estudiantes: this.alumnos.map(alumno => ({
+        id: alumno.email, // Usa el email como identificador si no tienes un ID
+        nombre: alumno.name,
+        estado: alumno.estado || 'presente', // Valor por defecto 'presente'
+      })),
+    };
+
+    this.asistenciaService.registrarAsistencia(asistencia).then(() => {
+      alert('Asistencia guardada correctamente');
+    }).catch(error => {
+      console.error('Error al guardar la asistencia:', error);
+    });
   }
 }

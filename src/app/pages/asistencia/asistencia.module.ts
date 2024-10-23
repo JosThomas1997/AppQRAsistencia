@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { QrCodeModule } from 'ng-qrcode'; // Importa el módulo de QR Code
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,7 +14,8 @@ import { AsistenciaPage } from './asistencia.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AsistenciaPageRoutingModule
+    AsistenciaPageRoutingModule,
+    QrCodeModule
   ],
   declarations: [AsistenciaPage]
 })

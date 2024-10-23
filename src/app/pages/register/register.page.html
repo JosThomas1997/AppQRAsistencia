@@ -8,12 +8,14 @@
   <ion-card class="login-card">
     <img class="logo-image" alt="Imagen de registro" src="assets/imgs/Logo-RegistrAPP.png" />
     <ion-card-content [formGroup]="registerForm">
+
       <ion-item class="input-item">
         <ion-input formControlName="name" [(ngModel)]="nomValue" type="text" label="Nombre:" labelPlacement="floating" placeholder="Ej: Juan Pérez"></ion-input>
       </ion-item>
       <ion-text position="stacked" color="danger" *ngIf="registerForm.get('name')?.hasError('required')">
         El nombre es requerido!
       </ion-text>
+
       <ion-item class="input-item">
         <ion-input formControlName="email" [(ngModel)]="emailValue" type="email" label="Correo electrónico:" labelPlacement="floating" placeholder="Ej: ejemplo@dominio.com"></ion-input>
       </ion-item>
@@ -23,6 +25,7 @@
       <ion-text position="stacked" color="danger" *ngIf="registerForm.get('email')?.hasError('email')">
         El correo electrónico es inválido!
       </ion-text>
+
       <ion-item class="input-item">
         <ion-input formControlName="pass" [(ngModel)]="passValue" type="password" labelPlacement="floating" label="Contraseña:" placeholder="Ej: 123456"></ion-input>
       </ion-item>
@@ -32,6 +35,18 @@
       <ion-text position="stacked" color="danger" *ngIf="registerForm.get('pass')?.hasError('minlength')">
         La contraseña debe tener al menos 6 caracteres!
       </ion-text>
+
+      <!-- Selector de tipo de usuario -->
+      <ion-item class="input-item">
+        <ion-select formControlName="tipo" [(ngModel)]="tipoValue" placeholder="Selecciona tu tipo de usuario">
+          <ion-select-option value="profesor">Profesor</ion-select-option>
+          <ion-select-option value="alumno">Estudiante</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text position="stacked" color="danger" *ngIf="registerForm.get('tipo')?.hasError('required')">
+        Debes seleccionar un tipo de usuario!
+      </ion-text>
+
       <ion-button class="login-button" expand="full" (click)="register()">Registrarse</ion-button>
 
       <div class="login-text">
