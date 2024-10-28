@@ -1,0 +1,11 @@
+#mapId {
+    height: 100%; /* Ocupe el 100% de la altura del contenedor */
+    width: 100%; /* Ocupe el 100% del ancho del contenedor */
+  }
+
+  ion-content {
+    --padding-bottom: 0;
+    --padding-top: 0;
+    height: 100%; /* Asegúrate de que el contenido ocupe todo el alto */
+  }
+  

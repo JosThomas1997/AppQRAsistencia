@@ -1,0 +1,13 @@
+<div *ngIf="latitude && longitude">
+  <p>Latitud: {{ latitude }}</p>
+  <p>Longitud: {{ longitude }}</p>
+</div>
+
+<div *ngIf="error">
+  <p>{{ error }}</p>
+</div>
+
+<div style="height: 400px;" leaflet 
+     [leafletOptions]="options"
+     [leafletLayers]="layers"></div>
+

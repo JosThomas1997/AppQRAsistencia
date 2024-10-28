@@ -27,6 +27,11 @@ export class HomePage implements OnInit {
     this.router.navigate(['/asistencia']);
   }
 
+  navigateEstudianteinfo() {
+    this.router.navigate(['/estudianteinfo']);
+  }
+
+
   logout() {
     localStorage.removeItem('nombre'); // Elimina el nombre del localStorage
     this.router.navigate(['/login']); // Redirige a la página de inicio de sesión

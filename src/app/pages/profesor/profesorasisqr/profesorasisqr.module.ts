@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { QRCodeModule } from 'angularx-qrcode';
+import { QrCodeModule } from 'ng-qrcode';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -15,7 +15,7 @@ import { ProfesorasisqrPage } from './profesorasisqr.page';
     FormsModule,
     IonicModule,
     ProfesorasisqrPageRoutingModule,
-    QRCodeModule
+    QrCodeModule
   ],
   declarations: [ProfesorasisqrPage]
 })

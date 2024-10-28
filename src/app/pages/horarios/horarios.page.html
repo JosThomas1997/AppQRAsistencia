@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Horarios1</ion-title>
+    <ion-title>Horarios</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -32,9 +32,6 @@
         <h2>{{ clase.materia }}</h2>
         <p>{{ clase.horaInicio }} - {{ clase.horaFin }}</p>
       </ion-label>
-      <ion-button (click)="selectClass(clase)" color="primary" fill="outline">
-        Generar Código QR
-      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

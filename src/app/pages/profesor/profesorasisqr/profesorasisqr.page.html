@@ -1,37 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrar Asistencia QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding">
-  <h1 class="title">Código qr asistencia</h1>
-  
-  <div class="form-container">
-    <ion-item>
-      <ion-label position="floating">Nombre Clase</ion-label>
-      <ion-input type="text" [(ngModel)]="className"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Fecha</ion-label>
-      <ion-input type="date" [(ngModel)]="date"></ion-input>
-    </ion-item>
+  <h2>Selecciona una Clase</h2>
+
+  <!-- Seleccionar Clase -->
+  <ion-item>
+    <ion-label>Clase</ion-label>
+    <ion-select [(ngModel)]="selectedClaseId" (ionChange)="getAlumnos()">
+      <ion-select-option *ngFor="let clase of clases$ | async" [value]="clase.id">
+        {{ clase.materia }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Botón para Generar Código QR -->
+  <ion-button expand="block" color="primary" (click)="generarQRCode()">Generar Código QR</ion-button>
+
+  <!-- Sección del Código QR, centrado y solo visible si se ha generado -->
+  <div *ngIf="qrCodeString" class="qr-code-container">
+    <h3>Código QR Generado</h3>
+    <qr-code [value]="qrCodeString"></qr-code> <!-- Mostramos el código QR -->
   </div>
 
-  <div class="qr-container">
-    <div class="qr-code">
-      <qrcode [qrdata]="qrData" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
-    </div>
-    <p class="qr-instruction">Scanea el qr para marcar tu asistencia</p>
-  </div>
-
-  <div class="attendance-container">
-    <h2 class="section-title">Lista de asistencia</h2>
-    <div class="attendance-header">
-      <div class="name-column">Nombre</div>
-      <div class="time-column">Check-in </div>
-    </div>
-    <div class="attendance-row" *ngFor="let student of attendanceList">
-      <div class="name-column">{{ student.name }}</div>
-      <div class="time-column">{{ student.checkInTime | date:'HH:mm:ss' }}</div>
-    </div>
-  </div>
-
-  <ion-button expand="block" (click)="endAttendance()" class="end-button">
-    Terminar asistencia QR
-  </ion-button>
 </ion-content>

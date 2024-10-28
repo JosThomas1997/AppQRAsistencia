@@ -9,29 +9,29 @@ import { Observable, map, switchMap } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private collectionName = 'usuarios'; // Nombre de la colección en Firestore
+  private collectionName = 'usuarios';
 
   constructor(
     private firestore: AngularFirestore,
-    private afAuth: AngularFireAuth // Inyectar AngularFireAuth para manejar la autenticación
+    private afAuth: AngularFireAuth 
   ) {}
 
-  // Obtener todos los usuarios
+ 
   getUsuarios(): Observable<Usuario[]> {
     return this.firestore.collection<Usuario>(this.collectionName).valueChanges();
   }
 
-  // Obtener los alumnos (usuarios de tipo 'alumno')
+
   getAlumnos(): Observable<Usuario[]> {
     return this.firestore.collection<Usuario>(this.collectionName, ref => ref.where('tipo', '==', 'alumno')).valueChanges();
   }
 
-  // Obtener el usuario actualmente logueado
+ 
   getCurrentUser(): Observable<Usuario | null> {
     return this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          // Si el usuario está logueado, obtener su información desde Firestore
+     
           return this.firestore.collection<Usuario>(this.collectionName, ref => ref.where('email', '==', user.email))
             .valueChanges()
             .pipe(
@@ -47,7 +47,7 @@ export class UsuarioService {
     );
   }
 
-  // Obtener un usuario por su email
+
   getUsuarioByEmail(email: string): Observable<Usuario | undefined> {
     return this.firestore.collection<Usuario>(this.collectionName, ref => ref.where('email', '==', email))
       .valueChanges()
@@ -56,18 +56,18 @@ export class UsuarioService {
       );
   }
 
-  // Agregar un nuevo usuario a Firestore
+ 
   addUsuario(usuario: Usuario): Promise<void> {
-    const id = this.firestore.createId(); // Crear un ID único automáticamente
+    const id = this.firestore.createId(); 
     return this.firestore.collection(this.collectionName).doc(id).set(usuario);
   }
 
-  // Actualizar un usuario por su ID
+
   updateUsuario(id: string, updatedUsuario: Usuario): Promise<void> {
     return this.firestore.collection(this.collectionName).doc(id).update(updatedUsuario);
   }
 
-  // Eliminar un usuario por su ID
+
   deleteUsuario(id: string): Promise<void> {
     return this.firestore.collection(this.collectionName).doc(id).delete();
   }

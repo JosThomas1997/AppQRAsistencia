@@ -112,7 +112,7 @@ export class LoginPage implements OnInit {
         } else if (userData.tipo === 'alumno') {
           this.router.navigate(['/home']);
         } else {
-          this.router.navigate(['/admin']); // Para otros casos si es necesario
+          this.router.navigate(['/admin-dashboard']); // Para otros casos si es necesario
         }
       }
     } catch (error) {

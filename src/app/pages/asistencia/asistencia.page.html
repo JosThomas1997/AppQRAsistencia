@@ -1,34 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Asistencia Alumno</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Asistencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h2>Selecciona una Clase</h2>
+  <ion-button expand="block" (click)="startScan()">Iniciar Escaneo</ion-button>
 
-  <!-- Selección de clase -->
-  <ion-item>
-    <ion-label>Clase</ion-label>
-    <ion-select [(ngModel)]="selectedClaseId" (ionChange)="onClassSelected()">
-      <ion-select-option *ngFor="let clase of clases$ | async" [value]="clase.id">
-        {{ clase.materia }}
-      </ion-select-option>
-    </ion-select>
-  </ion-item>
-
-  <!-- Generar Código QR -->
-  <div *ngIf="qrCodeData">
-    <h3>Código QR generado para la clase seleccionada</h3>
-    <qr-code [value]="qrCodeData" 
-             size="300"
-             errorCorrectionLevel="M">
-    </qr-code>
+  <div *ngIf="isScanning" class="scanning-message">
+    <p>Apunta la cámara hacia el código QR...</p>
   </div>
 
-  <!-- Botón para generar QR -->
-  <ion-button expand="block" [disabled]="!selectedClaseId" (click)="generateQRCode()">Generar Código QR</ion-button>
-
-  <!-- Botón para escanear el QR -->
-  <ion-button expand="block" color="secondary" (click)="scanQRCode()">Escanear QR</ion-button>
+  <div *ngIf="scannedValue">
+    <h3>Valor Escaneado:</h3>
+    <p>{{ scannedValue }}</p>
+    <ion-button expand="block" (click)="clearScannedValue()">Limpiar</ion-button>
+  </div>
 </ion-content>

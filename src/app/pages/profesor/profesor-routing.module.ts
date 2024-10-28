@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'profesorasisqr',
     loadChildren: () => import('./profesorasisqr/profesorasisqr.module').then( m => m.ProfesorasisqrPageModule)
+  },
+  {
+    path: 'profesorinfo',
+    loadChildren: () => import('./profesorinfo/profesorinfo.module').then( m => m.ProfesorinfoPageModule)
   }
 
 ];

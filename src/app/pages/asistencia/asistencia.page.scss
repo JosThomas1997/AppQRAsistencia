@@ -1,25 +1,23 @@
-ion-content {
-  --background: #f4f5f8; /* Fondo claro */
+body.barcode-scanner-active {
+  visibility: hidden;
+  --background: transparent;
+  --ion-background-color: transparent;
 }
 
-h2, h3 {
+// Mostrar solo el modal del escáner mientras se escanea
+.barcode-scanner-modal {
+  visibility: visible;
+}
+
+@media (prefers-color-scheme: dark) {
+  .barcode-scanner-modal {
+    --background: transparent;
+    --ion-background-color: transparent;
+  }
+}
+
+.scanning-message {
   text-align: center;
-  color: #007bff;
-  margin-bottom: 20px;
-}
-
-ion-item {
-  --background: white;
-  margin-bottom: 15px;
-}
-
-ion-button {
-  margin-top: 15px;
-}
-
-.qr-code-style {
-  margin: 20px auto;
-  display: block;
-  width: 200px; /* Tamaño del QR */
-  height: 200px;
+  margin-top: 20px;
+  color: #666;
 }

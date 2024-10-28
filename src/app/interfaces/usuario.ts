@@ -3,5 +3,5 @@ export interface Usuario {
   email: string;
   tipo: string;
   pass: string;
-  estado?: string; // Opcional: Agregar estado si es necesario
+  estado?: string; 
 }

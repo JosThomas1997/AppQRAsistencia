@@ -1,5 +1,4 @@
 <ion-header [translucent]="true">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
   <ion-toolbar>
     <ion-title class="centered-title">Página Principal</ion-title>
     <ion-buttons slot="end">
@@ -12,32 +11,37 @@
 
 <ion-content [fullscreen]="true" class="background-gradient">
   <ion-header collapse="condense">
-    <ion-toolbar>
-    </ion-toolbar>
+    <ion-toolbar></ion-toolbar>
   </ion-header>
 
   <!-- CARD PARA LA BIENVENIDA -->
-  <ion-card>
+  <ion-card class="welcome-card">
     <ion-card-header>
-      <ion-card-title class="custom-card-title">Hola, {{ userName }}</ion-card-title>
+ 
     </ion-card-header>
     <ion-card-content class="custom-card-content">
-      <img alt="Silhouette of mountains" src="assets/imgs/Logo-RegistrAPP.png" />
+      <img alt="Logo de la app" src="assets/imgs/Logo-RegistrAPP.png" class="logo-image" />
     </ion-card-content>
 
-    <!-- Nuevo diseño para los botones de Horario y Asistencia -->
+    <!-- Botones de Horario, Asistencia y Perfil -->
     <div class="button-container">
+      <!-- Botón de Horario -->
       <ion-button class="custom-button" expand="block" (click)="navigateHorario()">
         <ion-icon name="time-sharp" slot="start"></ion-icon>
         Horario
       </ion-button>
 
+      <!-- Botón de Asistencia -->
       <ion-button class="custom-button" expand="block" (click)="navigateAsistencia()">
         <ion-icon name="checkmark-sharp" slot="start"></ion-icon>
         Asistencia
       </ion-button>
 
-      
+      <!-- Botón para ver el perfil del usuario -->
+      <ion-button class="custom-button" expand="block" (click)="navigateEstudianteinfo()">
+        <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+        Perfil
+      </ion-button>
     </div>
   </ion-card>
 </ion-content>

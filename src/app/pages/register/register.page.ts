@@ -18,7 +18,7 @@ export class RegisterPage implements OnInit {
   emailValue: string = '';
   passValue: string = '';
   nomValue: string = '';
-  tipoValue: string = ''; // Nuevo valor para el tipo de usuario
+  tipoValue: string = '';
 
   constructor(
     private router: Router,
@@ -28,12 +28,12 @@ export class RegisterPage implements OnInit {
     private firestore: AngularFirestore,
     private mensajes: MensajesService
   ) {
-    // Configuración del formulario reactivo con las validaciones necesarias
+
     this.registerForm = this.formBuilder.group({
       email : ['', [Validators.required, Validators.email]],
       pass: ['', [Validators.required, Validators.minLength(6)]],
       name: ['', [Validators.required, Validators.minLength(3)]],
-      tipo: ['', [Validators.required]] // Se añade validación para el tipo
+      tipo: ['', [Validators.required]]
     });
   }
 
@@ -43,25 +43,25 @@ export class RegisterPage implements OnInit {
     const nuevoUsuario: Usuario = {
       email: this.emailValue || '',
       pass: this.passValue || '',
-      tipo: this.tipoValue || 'profesor', // Se obtiene el tipo seleccionado (profesor o estudiante)
+      tipo: this.tipoValue || 'profesor',
       name: this.nomValue || ''
     };
 
     try {
-      // Registro con Firebase Authentication
+ 
       const usuarioFirebase = await this.authService.register(this.emailValue, this.passValue);
       const user = usuarioFirebase.user;
 
       if (user) {
-        // Guardar el usuario en Firestore usando la colección 'usuarios'
+
         await this.firestore.collection('usuarios').doc(user.uid).set({
           email: user.email,
           name: this.nomValue,
           pass: this.passValue,
-          tipo: nuevoUsuario.tipo // Se asigna el tipo seleccionado por el usuario
+          tipo: nuevoUsuario.tipo 
         });
 
-        // Mostrar mensaje de éxito
+ 
         this.mensajes.mensaje('Cuenta creada exitosamente!', 'success', 'Éxito!').then(() => {
           this.router.navigate(['/login']);
         });

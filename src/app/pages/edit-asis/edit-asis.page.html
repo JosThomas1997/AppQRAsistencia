@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Gestión de Asistencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="asistenciaForm" (ngSubmit)="selectedAsistenciaId ? guardarAsistenciaEditada() : registrarAsistencia()">
+    <ion-item>
+      <ion-label position="stacked">Clase ID:</ion-label>
+      <ion-input formControlName="claseId"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Alumno ID:</ion-label>
+      <ion-input formControlName="alumnoId"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Estado:</ion-label>
+      <ion-select formControlName="estado" placeholder="Seleccionar">
+        <ion-select-option value="presente">Presente</ion-select-option>
+        <ion-select-option value="ausente">Ausente</ion-select-option>
+        <ion-select-option value="justificado">Justificado</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">
+      {{ selectedAsistenciaId ? 'Guardar Cambios' : 'Registrar Asistencia' }}
+    </ion-button>
+  </form>
+
+  <ion-list>
+    <ion-item *ngFor="let asistencia of asistencias">
+      <ion-label>
+        Clase: {{ asistencia.claseId }} | Alumno: {{ asistencia.alumnoId }} | Estado: {{ asistencia.estado }}
+      </ion-label>
+
+      <ion-button *ngIf="asistencia.id" (click)="cargarAsistenciaParaEditar(asistencia, asistencia.id!)" fill="clear">Editar</ion-button>
+
+      <ion-button *ngIf="asistencia.id" (click)="eliminarAsistencia(asistencia.id!)" fill="clear" color="danger">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

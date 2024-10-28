@@ -65,7 +65,20 @@ const routes: Routes = [
   {
     path: 'edit-user/:uid',
     loadChildren: () => import('./pages/edit-user/edit-user.module').then( m => m.EditUserPageModule)
+  },
+  {
+    path: 'estudianteinfo',
+    loadChildren: () => import('./pages/estudianteinfo/estudianteinfo.module').then( m => m.EstudianteinfoPageModule)
+  },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule)
+  },
+  {
+    path: 'edit-asis',
+    loadChildren: () => import('./pages/edit-asis/edit-asis.module').then( m => m.EditAsisPageModule)
   }
+
 
   
 

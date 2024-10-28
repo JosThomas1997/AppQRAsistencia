@@ -1,12 +1,40 @@
-/* Importar fuentes de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
-
-/* Estilo del ion-header */
+/* Fondo del ion-header */
 ion-header {
-  --background: rgba(0, 123, 255, 0.8); /* Azul con opacidad para el fondo */
+  --background: rgba(0, 123, 255, 0.9); /* Azul semi-transparente */
   --color: white;
-  backdrop-filter: blur(10px); /* Efecto de desenfoque para un look moderno */
-  font-family: 'Open Sans', sans-serif; /* Cambiar fuente del encabezado */
+  backdrop-filter: blur(10px); /* Desenfoque para darle un look moderno */
+  font-family: 'Open Sans', sans-serif; /* Fuente moderna */
+}
+
+/* Fondo del contenido */
+.background-gradient {
+  background: linear-gradient(135deg, #007bff, #ffffff); /* Gradiente de azul a blanco */
+  --background: transparent;
+}
+
+/* Card de bienvenida */
+.welcome-card {
+  margin: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra para dar profundidad */
+  background-color: #ffffff;
+}
+
+/* Título del card */
+.custom-card-title {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem; /* Más grande para hacerlo más destacado */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Imagen del logo */
+.logo-image {
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+  padding: 20px;
 }
 
 /* Contenedor de botones */
@@ -15,75 +43,44 @@ ion-header {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: linear-gradient(135deg, #007bff, #ffffff); /* Degradado de azul a blanco para el fondo del contenedor */
-  border-radius: 10px; /* Bordes redondeados para el contenedor */
-  font-family: 'Roboto', sans-serif; /* Cambiar fuente para los botones */
+  background: linear-gradient(135deg, #f8f9fa, #ffffff); /* Fondo claro para los botones */
+  border-radius: 10px;
 }
 
-/* Estilo para los botones */
+/* Estilo de los botones */
 .custom-button {
-  --background: linear-gradient(135deg, #FFCC00, #FFFF99); /* Degradado amarillo claro a amarillo */
-  --background-activated: linear-gradient(135deg, #FFCC00, #FFCC99); /* Degradado amarillo oscuro a amarillo claro */
+  --background: linear-gradient(135deg, #ffcc00, #ffdd33); /* Degradado amarillo */
   --border-radius: 30px;
-  --box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  color: black; /* Cambiado a negro para contraste con el amarillo */
+  --box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   width: 80%;
-  height: 60px;
+  height: 55px;
   margin: 15px 0;
-  font-size: 1.2em;
+  font-size: 1.2rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
   text-transform: uppercase;
-  transition: transform 0.3s ease, background 0.3s ease; /* Añadido efecto de transición para el fondo */
-  background: var(--background);
-  border: none;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  color: #000;
+  transition: transform 0.3s ease, background 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .custom-button:hover {
-  transform: scale(1.05);
-  --background: linear-gradient(135deg, #FFCC00, #FFCC99); /* Efecto hover con gradiente modificado */
-  background: var(--background);
+  transform: scale(1.05); /* Efecto de hover con escala */
+  --background: linear-gradient(135deg, #ffdd33, #ffee66); /* Efecto de hover con degradado más claro */
 }
 
+/* Estilo del icono en los botones */
 .custom-button ion-icon {
-  font-size: 1.5em;
+  font-size: 1.4rem;
   margin-right: 10px;
 }
 
-/* Fondo del ion-content con un gradiente */
-.background-gradient {
-  background: linear-gradient(135deg, #007bff, #ffffff); /* Gradiente de azul a blanco */
-  --background: transparent; /* Asegura que el fondo se muestre correctamente */
+/* Responsividad: para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .custom-button {
+    width: 90%;
+    font-size: 1rem;
+  }
 }
-
-/* Fondo uniforme para el contenido de la tarjeta */
-.custom-card-content {
-  background-color: #ffffff; /* Color sólido blanco que combina con el fondo del ion-content */
-  border-radius: 8px; /* Bordes redondeados para las tarjetas */
-  padding: 16px; /* Espaciado interno */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
-  text-align: center; /* Centra el contenido dentro de la tarjeta */
-  font-family: 'Roboto', sans-serif; /* Cambiar fuente para el contenido de la tarjeta */
-}
-
-/* Estilo opcional para el ion-card para mantener el diseño uniforme */
-ion-card {
-  border-radius: 8px; /* Bordes redondeados para el card */
-  overflow: hidden; /* Asegura que el contenido no se desborde */
-  margin: 0 20px; /* Espaciado alrededor de la tarjeta */
-  font-family: 'Roboto', sans-serif; /* Cambiar fuente para el card */
-}
-
-/* Estilo del ion-card-title */
-.custom-card-title {
-  text-align: center; /* Centra el texto horizontalmente */
-  font-family: 'Roboto', sans-serif; /* Cambiar fuente del título */
-  font-size: 1.8rem; /* Tamaño de la fuente del título */
-  font-weight: 700; /* Grosor de la fuente del título */
-  margin: 0; /* Elimina márgenes para una alineación precisa */
-  padding: 16px; /* Espaciado interno si es necesario */
-}
-

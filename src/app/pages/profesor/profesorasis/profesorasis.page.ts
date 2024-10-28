@@ -42,20 +42,25 @@ export class ProfesorasisPage {
 
   // Guardar la asistencia en Firestore utilizando AsistenciaService
   guardarAsistencia() {
-    const asistencia: Asistencia = {
-      claseId: this.selectedClaseId,
-      fecha: new Date().toISOString().split('T')[0], // Fecha actual en formato YYYY-MM-DD
-      estudiantes: this.alumnos.map(alumno => ({
-        id: alumno.email, // Usa el email como identificador si no tienes un ID
-        nombre: alumno.name,
-        estado: alumno.estado || 'presente', // Valor por defecto 'presente'
-      })),
-    };
-
-    this.asistenciaService.registrarAsistencia(asistencia).then(() => {
-      alert('Asistencia guardada correctamente');
-    }).catch(error => {
-      console.error('Error al guardar la asistencia:', error);
+    this.alumnos.forEach(alumno => {
+      const asistencia: Asistencia = {
+        claseId: this.selectedClaseId,
+        alumnoId: alumno.email,  // Campo obligatorio: asignamos el email del alumno como ID
+        estado: alumno.estado as 'presente' | 'ausente' | 'justificado' || 'presente',  // Asignamos el estado o 'presente' por defecto
+        fecha: new Date().toISOString().split('T')[0], // Fecha actual en formato YYYY-MM-DD
+        estudiantes: [{ 
+          id: alumno.email, 
+          nombre: alumno.name, 
+          estado: alumno.estado || 'presente'  // Estado opcional dentro de estudiantes
+        }]
+      };
+  
+      // Guardamos la asistencia en Firestore
+      this.asistenciaService.registrarAsistencia(asistencia).then(() => {
+        console.log(`Asistencia guardada para ${alumno.name}`);
+      }).catch(error => {
+        console.error(`Error al guardar la asistencia de ${alumno.name}: `, error);
+      });
     });
   }
-}
+}  
