@@ -16,7 +16,7 @@ export class AsistenciaPage {
     const status = await BarcodeScanner.checkPermission({ force: true });
     if (status.granted) {
       this.isScanning = true;
-      // Añadimos la clase al body para ocultar el contenido mientras se escanea
+      // AÃ±adimos la clase al body para ocultar el contenido mientras se escanea
       document.body.classList.add('barcode-scanner-active');
   
       const result = await BarcodeScanner.startScan();

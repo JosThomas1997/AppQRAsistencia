@@ -32,11 +32,32 @@
           <ion-select-option value="justificado">Justificado</ion-select-option>
         </ion-select>
       </ion-item>
-      
     </ion-list>
 
     <!-- Botón para Guardar Asistencia -->
     <ion-button expand="block" (click)="guardarAsistencia()">Guardar Asistencia</ion-button>
+  </div>
+
+  <!-- Selección de Estado para Filtrar -->
+  <div *ngIf="selectedClaseId">
+    <ion-item>
+      <ion-label>Filtrar por Estado</ion-label>
+      <ion-select [(ngModel)]="estadoSeleccionado" (ionChange)="filtrarEstudiantes()">
+        <ion-select-option value="presente">Presente</ion-select-option>
+        <ion-select-option value="ausente">Ausente</ion-select-option>
+        <ion-select-option value="justificado">Justificado</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <!-- Lista de Estudiantes Filtrados -->
+  <div *ngIf="estudiantesFiltrados.length > 0">
+    <h3>Estudiantes {{ estadoSeleccionado | titlecase }}</h3>
+    <ion-list>
+      <ion-item *ngFor="let estudiante of estudiantesFiltrados">
+        <ion-label>{{ estudiante.nombre }}</ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 
   <!-- Mensaje si no hay alumnos -->

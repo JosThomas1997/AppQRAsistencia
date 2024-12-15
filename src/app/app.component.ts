@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from './services/firebase/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,11 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {
-  constructor(private platform: Platform, private router: Router) {
+  constructor(private platform: Platform, private router: Router, private authService: AuthService) {
     this.initializeApp();
+
+
+
   }
 
   initializeApp() {

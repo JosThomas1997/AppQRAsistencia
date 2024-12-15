@@ -31,6 +31,10 @@ export class HomePage implements OnInit {
     this.router.navigate(['/estudianteinfo']);
   }
 
+  navigateMapa(){
+    this.router.navigate(['/mapa']);
+  }
+
 
   logout() {
     localStorage.removeItem('nombre'); // Elimina el nombre del localStorage

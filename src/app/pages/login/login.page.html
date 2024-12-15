@@ -19,6 +19,13 @@
         <ion-button expand="full" (click)="login()">Ingresar</ion-button>
       </form>
 
+      <!--Inicio de sesion de Google y Github-->
+      <div class="register-text">
+        Iniciar Sesion con Google y GithHub
+      </div>
+      <ion-button expand="full" (click)="loginGoogle()"> <ion-icon name="logo-google" slot="start"></ion-icon> Google </ion-button>
+      <ion-button expand="full" (click)="loginGithub()"> <ion-icon name="logo-github" slot="start"></ion-icon> Github </ion-button>
+
       <!-- Enlaces de registrar y recuperar contraseña -->
       <div class="register-text">
         ¿No tienes cuenta? 

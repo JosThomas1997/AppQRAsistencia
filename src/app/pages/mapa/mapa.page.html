@@ -1,13 +1,22 @@
-<div *ngIf="latitude && longitude">
-  <p>Latitud: {{ latitude }}</p>
-  <p>Longitud: {{ longitude }}</p>
-</div>
+<ion-header> 
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mapa de Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<div *ngIf="error">
-  <p>{{ error }}</p>
-</div>
+<ion-content>
 
-<div style="height: 400px;" leaflet 
-     [leafletOptions]="options"
-     [leafletLayers]="layers"></div>
+  <!--Mapa de la API-->
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
 
+  <!--Texto para declaracion de posicion-->
+  <div class="info-container">
+    <p>Ubicacion Actual</p>
+  </div>
+
+</ion-content>

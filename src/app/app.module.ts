@@ -8,7 +8,6 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { QrCodeModule } from 'ng-qrcode'; // Importar el módulo de ng-qrcode
 import { provideHttpClient } from '@angular/common/http';  // Importa la nueva función
 
-
 //FIREBASE
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';

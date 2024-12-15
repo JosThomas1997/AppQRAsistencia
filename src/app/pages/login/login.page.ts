@@ -82,7 +82,24 @@ export class LoginPage implements OnInit {
     );
   }
   
-  
+  /* inicio de sesion con google y github */
+  async loginGoogle(){
+    this.authService.loginGoogle().then((res) => {
+      console.log('Iniciando sesion con Cuenta de Google', res);
+      this.router.navigate(['/home']);
+    }).catch((error) =>{
+      console.error('Error al iniciar sesion con cuenta de google', error);
+    });
+  }
+
+  async loginGithub(){
+    this.authService.loginGithub().then((res) => {
+      console.log('Iniciando sesion con cuenta de Github', res);
+      this.router.navigate(['/home']);
+    }).catch((error) => {
+      console.error('Error al iniciar sesion con cuenta de Github', error);
+    });
+  }
 
   async login() {
     const email = this.loginForm.value.email;

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { HttpClient } from '@angular/common/http'; // Añadir HttpClient
 import { map, switchMap } from 'rxjs/operators';
+import firebase from 'firebase/compat/app';
 
 
 @Injectable({
@@ -19,8 +20,22 @@ export class AuthService {
               private http: HttpClient 
   ) { }
 
-  
+  //Logica de inicio de sesion con Google y Github
 
+  loginGoogle(){
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return this.angularFireAuth.signInWithPopup(provider);
+  }
+
+  loginGithub(){
+    const provider = new firebase.auth.GithubAuthProvider();
+    return this.angularFireAuth.signInWithPopup(provider);
+  }
+
+  //Tomar los datos del usuarios que inicia sesion
+  getCurrentUser(){
+    return this.angularFireAuth.authState;
+  }
  
   createRandomUsers(): Observable<any> {
     const url = `${this.apiUrl}?results=10`; 
@@ -77,4 +92,5 @@ export class AuthService {
         throw error;
       });
   }
+
 }

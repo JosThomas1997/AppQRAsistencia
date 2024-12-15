@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import { latLng, tileLayer, marker, MapOptions, Marker } from 'leaflet';
 
@@ -9,7 +9,7 @@ import { latLng, tileLayer, marker, MapOptions, Marker } from 'leaflet';
 })
 export class MapaPage  {
 
-   latitude: number = 0;  
+  latitude: number = 0;  
   longitude: number = 0; 
   layers: Marker[] = [];
   options: MapOptions;
@@ -33,6 +33,7 @@ export class MapaPage  {
     this.getCurrentLocation();
   }
 
+  
   getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {

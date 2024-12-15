@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClaseService } from 'src/app/services/firebase/clase.service.service'; // Service para obtener las clases
-import { UsuarioService } from 'src/app/services/usuarios.service'; // Service para obtener los alumnos
+import { ClaseService } from 'src/app/services/firebase/clase.service.service';
+import { UsuarioService } from 'src/app/services/usuarios.service';
 import { AsistenciaService } from 'src/app/services/firebase/asistencia.service.service';
 import { Observable } from 'rxjs';
 import { Clase } from 'src/app/interfaces/clase';
@@ -13,9 +13,11 @@ import { Asistencia } from 'src/app/interfaces/asistencia';
   styleUrls: ['./profesorasis.page.scss'],
 })
 export class ProfesorasisPage {
-  clases$!: Observable<Clase[]>; // Modificado para evitar el error
-  alumnos: Array<Usuario & { estado?: string }> = []; // Añadimos 'estado' temporalmente
-  selectedClaseId: string = ''; // ID de la clase seleccionada
+  clases$!: Observable<Clase[]>; // Lista de clases
+  alumnos: Array<Usuario & { estado?: string }> = []; // Lista de alumnos con su estado
+  selectedClaseId: string = ''; // Clase seleccionada por el profesor
+  estadoSeleccionado: string = 'presente'; // Estado para el filtro (presente por defecto)
+  estudiantesFiltrados: Array<{ id: string; nombre: string }> = []; // Lista de estudiantes filtrados
 
   constructor(
     private claseService: ClaseService,
@@ -24,43 +26,54 @@ export class ProfesorasisPage {
   ) {}
 
   ngOnInit() {
-    this.getClases(); // Obtener todas las clases al iniciar
+    this.getClases(); // Cargar las clases al iniciar
   }
 
-  // Obtener las clases desde el ClaseService
+  // Obtener todas las clases
   getClases() {
     this.clases$ = this.claseService.getClases();
   }
 
-  // Obtener alumnos desde UsuarioService, filtrando por tipo 'alumno'
+  // Obtener alumnos registrados como tipo 'alumno'
   getAlumnos() {
-    this.usuarioService.getAlumnos().subscribe(data => {
-      // Inicializamos 'estado' para cada alumno
-      this.alumnos = data.map(alumno => ({ ...alumno, estado: 'presente' }));
+    this.usuarioService.getAlumnos().subscribe((data) => {
+      // Inicializar los alumnos con el estado 'presente' por defecto
+      this.alumnos = data.map((alumno) => ({ ...alumno, estado: 'presente' }));
     });
   }
 
-  // Guardar la asistencia en Firestore utilizando AsistenciaService
+  // Guardar la asistencia en Firestore
   guardarAsistencia() {
-    this.alumnos.forEach(alumno => {
+    this.alumnos.forEach((alumno) => {
       const asistencia: Asistencia = {
         claseId: this.selectedClaseId,
-        alumnoId: alumno.email,  // Campo obligatorio: asignamos el email del alumno como ID
-        estado: alumno.estado as 'presente' | 'ausente' | 'justificado' || 'presente',  // Asignamos el estado o 'presente' por defecto
-        fecha: new Date().toISOString().split('T')[0], // Fecha actual en formato YYYY-MM-DD
-        estudiantes: [{ 
-          id: alumno.email, 
-          nombre: alumno.name, 
-          estado: alumno.estado || 'presente'  // Estado opcional dentro de estudiantes
-        }]
+        alumnoId: alumno.email,
+        estado: alumno.estado as 'presente' | 'ausente' | 'justificado',
+        fecha: new Date().toISOString().split('T')[0], // Fecha actual
+        estudiantes: [
+          {
+            id: alumno.email,
+            nombre: alumno.name,
+            estado: alumno.estado || 'presente',
+          },
+        ],
       };
-  
-      // Guardamos la asistencia en Firestore
+
       this.asistenciaService.registrarAsistencia(asistencia).then(() => {
         console.log(`Asistencia guardada para ${alumno.name}`);
-      }).catch(error => {
+      }).catch((error) => {
         console.error(`Error al guardar la asistencia de ${alumno.name}: `, error);
       });
     });
   }
-}  
+
+  // Filtrar estudiantes por el estado seleccionado
+  filtrarEstudiantes() {
+    this.estudiantesFiltrados = this.alumnos
+      .filter((alumno) => alumno.estado === this.estadoSeleccionado)
+      .map((alumno) => ({
+        id: alumno.email,
+        nombre: alumno.name,
+      }));
+  }
+}
